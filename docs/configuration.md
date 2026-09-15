@@ -44,12 +44,12 @@ searches:
 - `bbox` (اختیاری): اگر گذاشته شود عیناً به سرور دیوار می‌رود (پیش‌فیلتر جغرافیایی سرور) — مفید وقتی ناحیه‌ای بزرگ‌تر از چند محله مدنظر است؛ همیشه همراه `districts` استفاده شود چون مستطیل، محله‌های مجاور را هم می‌گیرد.
 - **تداخل با کلید بومی `districts` دیوار:** دیوار خودش فیلتر `districts` با ID عددی محله‌ها دارد (داخل `form_data` — pass-through می‌شود). اگر کاربر آن را مستقیم در `form_data` گذاشت **و** `districts` (نام) در سطح جستجو هم بود → خطای اعتبارسنجی (ابهام). یکی از دو مسیر: نام‌ها در سطح جستجو (پس‌فیلتر، خوانا) یا IDها در `form_data` (سرور، دقیق).
 - `recent_ads` (اختیاری، مثل `{"str": {"value": "1d"}}`): پنجره «آگهی‌های اخیر» — مکمل watermark برای سبک‌شدن پاسخ؛ به‌تنهایی کافی نیست (اگر poll طولانی متوقف شود، پنجره ممکن است پرت شود).
-- **مسیر ارتقا:** پس از تهیه جدول نگاشت نام محله → district ID، مقادیر `districts` به کلید بومی دیوار ترجمه می‌شوند — کانفیگ کاربر بدون تغییر می‌ماند، فقط سرریز نتایج حذف می‌شود.
+- **district ID از کاربر:** مقادیر ID محله‌ها را کاربر مستقیم در `form_data.districts` می‌گذارد (Capture از DevTools — فیلتر دقیق سمت سرور، همین حالا قابل استفاده). جدول نگاشت نام→ID در فازهای بعدی تکمیل می‌شود تا ترجمه خودکار نام‌ها ممکن شود؛ کانفیگ نام‌محور (`districts` در سطح جستجو) بدون تغییر می‌ماند.
 - اعتبارسنجی در startup: کلیدهای ناشناخته فقط **هشدار** می‌دهند (نه خطا)، تا فیلترهای جدید دیوار مسدود نشوند؛ کلیدهای معتبرِ غلط‌مقدار (مثلاً `number_range` بدون min/max) خطا می‌دهند.
 
 ## ۲. امتیازدهی (`scoring`)
 
-موتور امتیازدهی روی **فیلدهای نرمال‌شده** جدول بخش ۷ `divar-api.md` کار می‌کند (`price`، `price_per_square`، `size`، `rooms`، `building_age`، `has_parking`، `has_elevator`، `is_dealer`، …).
+موتور امتیازدهی روی **فیلدهای نرمال‌شده جدول بخش ۷ `divar-api.md`** کار می‌کند — در MVP فقط فیلدهای قابل استخراج از کارت `search` (ADR-0007): `price`، `district`، `city`، `title`، `is_promoted`.
 
 ```yaml
 scoring:
@@ -57,29 +57,30 @@ scoring:
     min_score: 60                 # ← فقط امتیاز >= این مقدار نوتیف می‌گیرد
     on_missing_field: skip        # skip (پیش‌فرض) | zero
     rules:
-      # قاعده ساده: مقایسه + امتیاز ثابت
-      - {field: rooms, op: ">=", value: 2, points: 10}
-      - {field: has_elevator, op: "==", value: true, points: 5}
-      - {field: has_parking, op: "==", value: true, points: 5}
-      - {field: building_age, op: "<=", value: 12, points: 10}
-
-      # قاعده پله‌ای: اولین شرط برقرار اعمال می‌شود
-      - field: price_per_square
+      # قاعده پله‌ای روی قیمت — تنها فیلد عددی قابل استخراج از کارت search در MVP
+      - field: price
         tiers:
-          - {op: "<=", value: 260000000, points: 30}
-          - {op: "<=", value: 280000000, points: 15}
-          - {op: "<=", value: 300000000, points: 5}
+          - {op: "<=", value: 12000000000, points: 30}
+          - {op: "<=", value: 13500000000, points: 15}
+          - {op: "<=", value: 15000000000, points: 5}
+
+      # محله (تطبیق contains نرمال‌شده با هر عنصر لیست)
+      - {field: district, op: contains_any, value: [نارمک, پونک, شهران], points: 10}
+
+      # کلمات کلیدی عنوان (جریمه)
+      - {field: title, op: contains_any, value: [سرمایه‌گذاری, کلید نخورده], points: -10}
 
       # جریمه (امتیاز منفی)
-      - {field: is_dealer, op: "==", value: true, points: -20}
-      - {field: price, op: "==", value: null, points: -10}   # توافقی
+      - {field: price, op: "==", value: null, points: -10}   # توافقی (null صریح)
+      - {field: is_promoted, op: "==", value: true, points: -5}   # نردبان شده (اختیاری)
 ```
 
 قواعد موتور:
 
-- عملگرها: `==`، `!=`، `<`، `<=`، `>`، `>=`، `in` (عضویت در لیست).
+- عملگرها: `==`، `!=`، `<`، `<=`، `>`، `>=`، `in` (عضویت دقیق در لیست)، `contains_any` (حداقل یکی از عناصر لیست در متن نرمال‌شده باشد — برای `title`/`district`).
+- فیلدهای مجاز MVP (فقط فیلدهای قابل استخراج از کارت `search` — `divar-api.md` بخش ۷.۱): `price`، `district`، `city`، `title`، `is_promoted`؛ به‌علاوه `rebuilt` فقط به‌عنوان بافت جستجو (بخش ۷.۲ — مقدار ثابتِ جستجو، توصیه: اطلاعاتی). `is_dealer` فعلاً خارج از دامنه است (تصمیم محصول). فیلدهای `size`/`rooms`/`building_age`/امکانات/`price_per_square` فقط با post detail برمی‌گردند (بخش ۷.۳ — نمونه کامل نشان داد در کارت search نیستند).
+- **غایب در برابر null:** فیلد **غایب** (منبع ندارد) → کل قاعده `skip` (یا `zero` مطابق `on_missing_field`)؛ فیلد با مقدار **null صریح** (مثل قیمت «توافقی») → فقط `== null`/`!= null` ارزیابی می‌شود و قواعد عددی `skip` می‌شوند — قیمت توافقی آگهی را حذف نمی‌کند ولی جریمه می‌گیرد.
 - `points` می‌تواند منفی باشد (جریمه). امتیاز نهایی = جمع امتیاز همه قواعد برقرار (در tiers فقط پله اول).
-- فیلد ناموجود/`null` → کل قاعده `skip` می‌شود (پیش‌فرض) — قیمت «توافقی» آگهی را بی‌دلیل حذف نمی‌کند.
 - `score >= min_score` → نوتیف؛ **پیام شامل امتیاز کل و شکست آن است** تا کالیبره‌کردن قواعد ممکن باشد.
 - قواعد نسبی (مقایسه با میانگین محله/دسته — «چند بودن») → فاز بعد (backlog)؛ طراحی `value` برای عبارت‌هایی مثل `below_neighborhood_avg: 20%` باز نگه داشته می‌شود.
 
@@ -92,7 +93,7 @@ notify:
     chat_id: "123456789"
     # توکن بات فقط از .env → TELEGRAM_BOT_TOKEN
   message:
-    fields: [title, price, price_per_square, size, rooms, building_age, district, score, score_breakdown, link]
+    fields: [title, price, district, city, score, score_breakdown, link]
     link_template: "https://divar.ir/v/{token}"
 ```
 
@@ -105,6 +106,8 @@ polling:
   jitter: ±30s
   backoff: exponential            # روی 429/5xx
   max_consecutive_errors: 5       # بعد از آن، توقف موقت + لاگ
+  max_pages_per_poll: 5           # سقف صفحه‌بندی هر poll (divar-api.md بخش ۹)
+  notify_on_bump: false           # آگهی bumpشده (token موجود + sort_date جدید) دوباره نوتیف نشود
 ```
 
 ## ۵. متغیرهای محیطی (`.env`)
@@ -118,6 +121,6 @@ TELEGRAM_BOT_TOKEN=...            # هرگز commit نمی‌شود
 
 1. ساختار YAML (schema validation).
 2. `id` یکتا؛ `interval >= polling.default_interval` حداقل مجاز.
-3. فیلدهای قواعد امتیازدهی ⊆ فیلدهای نرمال‌شده شناخته‌شده (خطا).
+3. فیلدهای قواعد امتیازدهی ⊆ فیلدهای نرمال‌شده شناخته‌شده از کارت search (`divar-api.md` بخش ۷.۱/۷.۲) (خطا).
 4. کلیدهای `form_data` ناشناخته → هشدار (نه خطا).
 5. وجود `.env` و مقادیر لازم برای کانال‌های فعال.
