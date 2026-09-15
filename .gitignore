@@ -1,0 +1,23 @@
+# مخفی‌های عمومی
+.env
+.env.*
+*.local
+
+# پایتون (پیش‌بینی اولیه)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node (در صورت نیاز)
+node_modules/
+
+# محیط‌های کاری
+.vscode/
+.idea/
+.DS_Store
+
+# دیتای محلی پایش
+data/
+*.sqlite
+*.db
