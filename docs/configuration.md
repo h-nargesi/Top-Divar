@@ -49,7 +49,7 @@ searches:
 
 ## ۲. امتیازدهی (`scoring`)
 
-موتور امتیازدهی روی **فیلدهای نرمال‌شده جدول بخش ۷ `divar-api.md`** کار می‌کند — در MVP فقط فیلدهای قابل استخراج از کارت `search` (ADR-0007): `price`، `district`، `city`، `title`، `is_promoted`.
+موتور امتیازدهی روی **فیلدهای نرمال‌شده جدول بخش ۷ `divar-api.md`** کار می‌کند — کارت search به‌علاوه جزئیات آگهی (ADR-0009): `price`، `price_per_square`، `size`، `rooms`، `construction_year`، `building_age`، `floor`، `has_parking`، `has_elevator`، `has_warehouse`، `district`، `city`، `title`، `is_promoted`.
 
 ```yaml
 scoring:
@@ -57,12 +57,28 @@ scoring:
     min_score: 60                 # ← فقط امتیاز >= این مقدار نوتیف می‌گیرد
     on_missing_field: skip        # skip (پیش‌فرض) | zero
     rules:
-      # قاعده پله‌ای روی قیمت — تنها فیلد عددی قابل استخراج از کارت search در MVP
+      # قاعده پله‌ای روی قیمت کل
       - field: price
         tiers:
           - {op: "<=", value: 12000000000, points: 30}
           - {op: "<=", value: 13500000000, points: 15}
           - {op: "<=", value: 15000000000, points: 5}
+
+      # قیمت هر متر (پس از آشتی با متراژ — divar-api.md بخش ۸.۶)
+      - field: price_per_square
+        tiers:
+          - {op: "<=", value: 280000000, points: 20}
+          - {op: "<=", value: 350000000, points: 10}
+
+      # عمر بنا = سال شمسی جاری − سال ساخت
+      - field: building_age
+        tiers:
+          - {op: "<=", value: 5, points: 15}
+          - {op: "<=", value: 15, points: 5}
+
+      - {field: has_parking, op: "==", value: true, points: 5}
+      - {field: has_elevator, op: "==", value: true, points: 5}
+      - {field: rooms, op: ">=", value: 2, points: 5}
 
       # محله (تطبیق contains نرمال‌شده با هر عنصر لیست)
       - {field: district, op: contains_any, value: [نارمک, پونک, شهران], points: 10}
@@ -78,11 +94,11 @@ scoring:
 قواعد موتور:
 
 - عملگرها: `==`، `!=`، `<`، `<=`، `>`، `>=`، `in` (عضویت دقیق در لیست)، `contains_any` (حداقل یکی از عناصر لیست در متن نرمال‌شده باشد — برای `title`/`district`).
-- فیلدهای مجاز MVP (فقط فیلدهای قابل استخراج از کارت `search` — `divar-api.md` بخش ۷.۱): `price`، `district`، `city`، `title`، `is_promoted`؛ به‌علاوه `rebuilt` فقط به‌عنوان بافت جستجو (بخش ۷.۲ — مقدار ثابتِ جستجو، توصیه: اطلاعاتی). `is_dealer` فعلاً خارج از دامنه است (تصمیم محصول). فیلدهای `size`/`rooms`/`building_age`/امکانات/`price_per_square` فقط با post detail برمی‌گردند (بخش ۷.۳ — نمونه کامل نشان داد در کارت search نیستند).
+- فیلدهای مجاز: از کارت search — `price`، `district`، `city`، `title`، `is_promoted`؛ از جزئیات — `price_per_square`، `size`، `rooms`، `construction_year`، `building_age`، `floor`، `total_floors`، `has_parking`، `has_elevator`، `has_warehouse` (`divar-api.md` بخش ۷.۱ و ۷.۴). `rebuilt` فقط بافت جستجو (بخش ۷.۲). `is_dealer` خارج از دامنه است.
 - **غایب در برابر null:** فیلد **غایب** (منبع ندارد) → کل قاعده `skip` (یا `zero` مطابق `on_missing_field`)؛ فیلد با مقدار **null صریح** (مثل قیمت «توافقی») → فقط `== null`/`!= null` ارزیابی می‌شود و قواعد عددی `skip` می‌شوند — قیمت توافقی آگهی را حذف نمی‌کند ولی جریمه می‌گیرد.
 - `points` می‌تواند منفی باشد (جریمه). امتیاز نهایی = جمع امتیاز همه قواعد برقرار (در tiers فقط پله اول).
 - `score >= min_score` → نوتیف؛ **پیام شامل امتیاز کل و شکست آن است** تا کالیبره‌کردن قواعد ممکن باشد.
-- قواعد نسبی کمیابی → فاز بعد (backlog). معیار مصوب: **درصد/صدک زیر میانهٔ قیمت‌متری همتای غلتان** (ADR-0008). عبارت قدیمی `below_neighborhood_avg` کنار گذاشته شد (مرجع میانگین نیست). قالب کانفیگ، تعریف همتا، پنجرهٔ زمانی و شکست امتیاز: [`deal-scoring.md`](deal-scoring.md) بخش‌های ۴، ۶ و ۹. تا آماده شدن `size` / `price_per_square` این بلوک فعال نمی‌شود.
+- قواعد نسبی کمیابی → فاز بعد (backlog). معیار مصوب: **درصد/صدک زیر میانهٔ قیمت‌متری همتای غلتان** (ADR-0008). عبارت قدیمی `below_neighborhood_avg` کنار گذاشته شد (مرجع میانگین نیست). پیش‌نیاز `size` / `price_per_square` از جزئیات تأمین شده؛ خود بلوک `relative` هنوز فعال نمی‌شود. قالب کانفیگ، تعریف همتا، پنجرهٔ زمانی و شکست امتیاز: [`deal-scoring.md`](deal-scoring.md) بخش‌های ۴، ۶ و ۹.
 
 ## ۳. اطلاع‌رسانی (`notify`)
 
@@ -93,7 +109,7 @@ notify:
     chat_id: "123456789"
     # توکن بات فقط از .env → TELEGRAM_BOT_TOKEN
   message:
-    fields: [title, price, district, city, score, score_breakdown, link]
+    fields: [title, price, price_per_square, size, rooms, construction_year, building_age, floor, has_parking, has_elevator, has_warehouse, district, city, score, score_breakdown, link]
     link_template: "https://divar.ir/v/{token}"
     # فاز نسبی: score_breakdown شامل cohort_median_pps، discount_pct، percentile
     # (docs/deal-scoring.md بخش ۶). نمایش دلار در پیام پیش‌فرض خاموش است (ADR-0008).
@@ -110,6 +126,7 @@ polling:
   max_consecutive_errors: 5       # بعد از آن، توقف موقت + لاگ
   max_pages_per_poll: 5           # سقف صفحه‌بندی هر poll (divar-api.md بخش ۹)
   notify_on_bump: false           # آگهی bumpشده (token موجود + sort_date جدید) دوباره نوتیف نشود
+  fetch_post_detail: true         # GET posts-v2/web برای آگهی جدید پس از جغرافیا (ADR-0009)
 ```
 
 ## ۵. متغیرهای محیطی (`.env`)
@@ -123,6 +140,6 @@ TELEGRAM_BOT_TOKEN=...            # هرگز commit نمی‌شود
 
 1. ساختار YAML (schema validation).
 2. `id` یکتا؛ `interval >= polling.default_interval` حداقل مجاز.
-3. فیلدهای قواعد امتیازدهی ⊆ فیلدهای نرمال‌شده شناخته‌شده از کارت search (`divar-api.md` بخش ۷.۱/۷.۲) (خطا).
+3. فیلدهای قواعد امتیازدهی ⊆ فیلدهای نرمال‌شده شناخته‌شده (`divar-api.md` بخش ۷.۱ / ۷.۲ / ۷.۴) (خطا).
 4. کلیدهای `form_data` ناشناخته → هشدار (نه خطا).
 5. وجود `.env` و مقادیر لازم برای کانال‌های فعال.
