@@ -14,6 +14,8 @@
 
 - [نیازمندی‌ها](docs/requirements.md)
 - [معماری](docs/architecture.md)
+- [کانفیگ](docs/configuration.md)
+- [معیار کمیابی و امتیاز به‌صرفه بودن](docs/deal-scoring.md)
 
 ## مشارکت با ایجنت‌ها
 
