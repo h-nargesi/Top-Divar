@@ -2305,7 +2305,7 @@ response:
 ## search page 2
 
 ```js
-await fetch("https://api.divar.ir/v8/postlist/w/search", {
+fetch("https://api.divar.ir/v8/postlist/w/search", {
     "credentials": "include",
     "headers": {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:144.0) Gecko/20100101 Firefox/144.0",
@@ -6294,6 +6294,946 @@ response:
   "rent": 0,
   "credit": 0,
   "source_view": ""
+ },
+ "analytics": {
+  "cat1": "real-estate",
+  "cat2": "residential-sell",
+  "cat3": "apartment-sell",
+  "city": "tehran"
+ },
+ "city": {
+  "city_id": "1",
+  "name": "تهران",
+  "parent_id": "904",
+  "second_slug": "tehran"
+ }
+}
+```
+
+### gammaxvi — فاقد آسانسور و پارکینگ (نمونهٔ امکانات منفی)
+
+> همان endpoint با token دوم — کالبدسازی قاعدهٔ امکاناتِ غایب (`divar-api.md` بخش ۸.۷): آیتم منفی به شکل عنوان «… ندارد» بدون کلید `available` و با `icon_color: ICON_HINT`.
+> نکات دیگر نمونه: سه تاریخ «انتشار / آخرین نردبان / آخرین به‌روزرسانی» در بخش TITLE (فیلدهای `published_at`/`last_bumped_at`/`last_updated_at` — بخش ۷.۴)؛ بذر نگاشت «هروی = 1024» در breadcrumb (بخش ۱۲.۵)؛ آشتی قیمت با اختلاف ۶۶هزار تومانی (بخش ۸.۶).
+> Captured: 2026-09-17، بدون کوکی. مقادیر per-request (مثل `contact_uuid` و `trace_id`) در هر فراخوانی فرق می‌کنند.
+
+```js
+fetch("https://api.divar.ir/v8/posts-v2/web/gammaxvi", {
+    "headers": {
+        "Accept": "application/json, text/plain, */*",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:144.0) Gecko/20100101 Firefox/144.0",
+        "X-Web-Serving-Mode": "desktop"
+    },
+    "referrer": "https://divar.ir/",
+    "method": "GET"
+});
+```
+response:
+```json
+{
+ "sections": [
+  {
+   "section_name": "BREADCRUMB",
+   "widgets": [
+    {
+     "widget_type": "BREADCRUMB",
+     "data": {
+      "@type": "type.googleapis.com/widgets.BreadcrumbData",
+      "parent_items": [
+       {
+        "title": "املاک",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "real-estate"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "فروش مسکونی",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "residential-sell"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "فروش آپارتمان",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "apartment-sell"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       }
+      ],
+      "current_page_title": "هـروی / ۹۸ متـر / فاقد آسانسور و پارکینگ",
+      "padded": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "TITLE",
+   "widgets": [
+    {
+     "widget_type": "LEGEND_TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.LegendTitleRowData",
+      "title": "هـروی / ۹۸ متـر / فاقد آسانسور و پارکینگ",
+      "high_level_heading": true,
+      "padding": "NO_PADDING"
+     }
+    },
+    {
+     "widget_type": "EXPANDABLE_SECTION",
+     "data": {
+      "@type": "type.googleapis.com/widgets.ExpandableSectionData",
+      "widget_list": [
+       {
+        "widget_type": "DESCRIPTION_ROW",
+        "data": {
+         "@type": "type.googleapis.com/widgets.DescriptionRowData",
+         "text": "انتشار آگهی: ۲۲ شهریور ۱۴۰۵، ۱۷:۱۹\nآخرین نردبان: ۲۴ شهریور ۱۴۰۵، ۰۶:۰۱\nآخرین به\u200cروز\u200cرسانی: ۲۴ شهریور ۱۴۰۵، ۰۶:۰۲",
+         "is_primary": true,
+         "small": true,
+         "text_alignment": "RIGHT"
+        }
+       }
+      ],
+      "title": "۳ روز پیش در تهران، هروی",
+      "icon": {}
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "زنگ خطرهای قبل از معامله",
+      "action": {
+       "type": "OPEN_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPagePayload",
+        "request_http_method": "POST",
+        "request_data": {
+         "@type": "type.googleapis.com/post_api_v2.GetFraudAlertPageRequest.Data",
+         "category": "apartment-sell"
+        },
+        "specification": {
+         "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification",
+         "navigation_button": "BACK"
+        },
+        "is_modal": true,
+        "rest_request_path": "/v8/postview/fraud-alert",
+        "grpc_request_path": "/post_api_v2.PostApi/GetFraudAlertPage"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/warning.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/warning.png",
+       "icon_name": "WARNING",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.PostWarningInfo",
+        "post_token": "gammaxvi"
+       },
+       "item_type": {
+        "type": "POST_WARNING"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "DESCRIPTION",
+   "widgets": [
+    {
+     "widget_type": "TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.TitleRowData",
+      "text": "توضیحات",
+      "text_color": "TEXT_PRIMARY",
+      "text_type": "SECONDARY"
+     }
+    },
+    {
+     "widget_type": "DESCRIPTION_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.DescriptionRowData",
+      "text": "◼️◼️◼️◼️امــلاڪ بــزرگـ\u200cـ مــاکان◼️◼️◼️◼️\n◼️◼️بزرگترین و حرفـه ای ترین در منطقـہ◼️◼️\n   ⚫⚫  به جستجـو پایــان بـده ⚫⚫\n\n⚫ ۹۸ متـر  / ۲ خواب \nتا برج ۴ سال ۱۴۰۶ مستاجر دارد ( مبلغ ۱.۳۰۰ پیش، ۶.۵۰۰ اجاره ) \n⚫ طبقه ۳.۵ ( فاقد آسانسور )\n⚫ به صورت تک واحدی\n⚫ فاقد پارکیـنگ\n⚫ تـراس \n⚫ سالن پرده خـور / رو به آفتاب \n⚫ واحد تمیز \n⚫ دسترسی عالی به مراکز خرید و اتوبانهای مجاور \n\n⚫ جهت اطلاعات بیشتر لطفا تماس حاصل فرمایید. \n\nکارشناس فروش؛ شـهاب",
+      "is_primary": true,
+      "text_alignment": "RIGHT"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "IMAGE",
+   "widgets": [
+    {
+     "widget_type": "IMAGE_CAROUSEL",
+     "data": {
+      "@type": "type.googleapis.com/widgets.ImageCarouselData",
+      "items": [
+       {
+        "image": {
+         "url": "https://s100.divarcdn.com/static/photo/neda/webp_post/YvjIgO2QRK2JXCfZUmOe5A/08c25269-07bf-47d7-ac25-f3ecac63425f.webp",
+         "alt": "هـروی / ۹۸ متـر / فاقد آسانسور و پارکینگ|فروش آپارتمان|تهران, هروی|دیوار",
+         "thumbnail_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/auM9fvkPskGFGKSRR7d9zA/08c25269-07bf-47d7-ac25-f3ecac63425f.webp"
+        }
+       }
+      ],
+      "image_aspect_ratio": {
+       "dynamic_aspect_ratio": {
+        "height": 3,
+        "width": 4
+       }
+      },
+      "has_preview": true,
+      "show_tooltip": true,
+      "tooltip_data": {
+       "icon": {
+        "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/fullscreen.png",
+        "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/fullscreen.png",
+        "icon_name": "FULLSCREEN",
+        "icon_color": "WHITE_PRIMARY"
+       },
+       "text": "عکس\u200cها: تزئینی"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "LIST_DATA",
+   "widgets": [
+    {
+     "widget_type": "GROUP_INFO_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.GroupInfoRow",
+      "items": [
+       {
+        "title": "متراژ",
+        "value": "۹۸"
+       },
+       {
+        "title": "ساخت",
+        "value": "۱۳۸۴"
+       },
+       {
+        "title": "اتاق",
+        "value": "۲"
+       }
+      ],
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "تصویر\u200cها برای همین ملک است؟",
+      "value": "خیر",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "قیمت کل",
+      "value": "\u200f۲۰,۵۰۰,۰۰۰,۰۰۰ تومان",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "قیمت هر متر",
+      "value": "\u200f۲۰۹,۱۸۳,۰۰۰ تومان",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "طبقه",
+      "value": "۳",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "SECTION_TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SectionTitleRowData",
+      "title": "ویژگی\u200cها و امکانات",
+      "title_color": "TEXT_PRIMARY",
+      "padding": "ALT"
+     }
+    },
+    {
+     "widget_type": "GROUP_FEATURE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.GroupFeatureRow",
+      "items": [
+       {
+        "title": "آسانسور ندارد",
+        "icon": {
+         "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_hint/v1/elevator.png",
+         "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_hint/v1/elevator.png",
+         "icon_name": "ELEVATOR",
+         "icon_color": "ICON_HINT"
+        }
+       },
+       {
+        "title": "پارکینگ ندارد",
+        "icon": {
+         "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_hint/v1/parking.png",
+         "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_hint/v1/parking.png",
+         "icon_name": "PARKING",
+         "icon_color": "ICON_HINT"
+        }
+       },
+       {
+        "title": "انباری",
+        "icon": {
+         "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/cabinet.png",
+         "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/cabinet.png",
+         "icon_name": "CABINET",
+         "icon_color": "ICON_SECONDARY"
+        },
+        "available": true
+       }
+      ],
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "سایر ویژگی\u200cها و امکانات",
+      "action": {
+       "type": "LOAD_MODAL_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.LoadModalPagePayload",
+        "modal_page": {
+         "title": "ویژگی\u200cها و امکانات",
+         "widget_list": [
+          {
+           "widget_type": "TITLE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.TitleRowData",
+            "text": "ویژگی\u200cها",
+            "has_divider": true,
+            "text_color": "TEXT_PRIMARY"
+           }
+          },
+          {
+           "widget_type": "UNEXPANDABLE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+            "title": "تعداد واحد در طبقه",
+            "value": "۱",
+            "has_divider": true
+           }
+          },
+          {
+           "widget_type": "TITLE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.TitleRowData",
+            "text": "امکانات",
+            "has_divider": true,
+            "text_color": "TEXT_PRIMARY"
+           }
+          },
+          {
+           "widget_type": "FEATURE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.FeatureRowData",
+            "title": "آسانسور ندارد",
+            "has_divider": true,
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/elevator.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/elevator.png",
+             "icon_name": "ELEVATOR",
+             "icon_color": "ICON_SECONDARY"
+            }
+           }
+          },
+          {
+           "widget_type": "FEATURE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.FeatureRowData",
+            "title": "پارکینگ ندارد",
+            "has_divider": true,
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/parking.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/parking.png",
+             "icon_name": "PARKING",
+             "icon_color": "ICON_SECONDARY"
+            }
+           }
+          },
+          {
+           "widget_type": "FEATURE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.FeatureRowData",
+            "title": "انباری",
+            "has_divider": true,
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/cabinet.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/cabinet.png",
+             "icon_name": "CABINET",
+             "icon_color": "ICON_SECONDARY"
+            }
+           }
+          },
+          {
+           "widget_type": "FEATURE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.FeatureRowData",
+            "title": "بالکن دارد",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/balcony.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/balcony.png",
+             "icon_name": "BALCONY",
+             "icon_color": "ICON_SECONDARY"
+            }
+           }
+          }
+         ]
+        }
+       }
+      },
+      "has_divider": true,
+      "icon": {},
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z",
+      "fullwidth": true
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.ViewPostFeaturesInfo",
+        "post_token": "gammaxvi"
+       },
+       "item_type": {
+        "type": "VIEW_POST_FEATURES"
+       }
+      },
+      "enabled": true
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "بررسی و کارشناسی",
+      "action": {
+       "type": "OPEN_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPagePayload",
+        "request_http_method": "POST",
+        "request_data": {
+         "@type": "type.googleapis.com/service_providers.GetServiceProvidersPageRequest.RequestData",
+         "source_v2": "DEMAND_POST",
+         "filter": {
+          "service_types": [
+           "REPORT_INSPECTION"
+          ],
+          "city_id": 1,
+          "category": "apartment-sell",
+          "post_token": "gammaxvi",
+          "touchpoint": "DEMAND_POST"
+         },
+         "action_data_builder": {
+          "conversation_id": "gammaxvi",
+          "post_token": "gammaxvi",
+          "touchpoint": "DEMAND_POST",
+          "source": "DEMAND_POST",
+          "lead_source": "DEMAND"
+         },
+         "display_data": {
+          "page_title": "بررسی و کارشناسی"
+         },
+         "trace_id": "f8e3e75b-fa5a-41aa-8160-85ffacb7f2b1",
+         "source": "DEMAND_POST",
+         "lead_source": "DEMAND"
+        },
+        "specification": {
+         "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification"
+        },
+        "is_modal": true,
+        "rest_request_path": "/v8/open-platform/service-providers",
+        "grpc_request_path": "/service_providers.ServiceProviders/GetServiceProvidersPage"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/article-magnifier.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/article-magnifier.png",
+       "icon_name": "ARTICLE_MAGNIFIER",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "TAGS",
+   "widgets": [
+    {
+     "widget_type": "WRAPPER_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.WrapperRowData",
+      "chip_list": {
+       "chips": [
+        {
+         "text": "فروش آپارتمان",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_POSTLIST_PAGE_GRPC",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+           "search_data": {
+            "form_data": {
+             "data": {
+              "category": {
+               "str": {
+                "value": "apartment-sell"
+               }
+              }
+             }
+            }
+           },
+           "source_view": "CATEGORY_BREAD_CRUMB",
+           "source_view_str": "CATEGORY_BREAD_CRUMB"
+          }
+         }
+        },
+        {
+         "text": "فروش آپارتمان در هروی",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_POSTLIST_PAGE_GRPC",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+           "search_data": {
+            "form_data": {
+             "data": {
+              "category": {
+               "str": {
+                "value": "apartment-sell"
+               }
+              },
+              "districts": {
+               "repeated_string": {
+                "value": [
+                 "1024"
+                ]
+               }
+              }
+             }
+            }
+           },
+           "source_view": "CATEGORY_BREAD_CRUMB",
+           "source_view_str": "CATEGORY_BREAD_CRUMB"
+          }
+         }
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "MAP",
+   "widgets": [
+    {
+     "widget_type": "MAP_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.MapRowData",
+      "location": {
+       "type": "FUZZY",
+       "fuzzy_data": {
+        "point": {
+         "latitude": 35.766802300280453,
+         "longitude": 51.47618109689914
+        },
+        "radius": 500
+       }
+      },
+      "image_url": "https://mapimage.divarcdn.com/v8/mapimage?encrypted_data=MTIzNDU2Nzg5MTIzXJ52-wJ49azuQuakp6HdZ_pLjQKhBZCMeTlb2qdty590fw==&is_nearby=true"
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.MapInfo",
+        "post_token": "gammaxvi"
+       },
+       "item_type": {
+        "type": "MAP"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "NOTE",
+   "widgets": [
+    {
+     "widget_type": "NOTE",
+     "data": {
+      "@type": "type.googleapis.com/widgets.NoteData",
+      "title": "یادداشت من",
+      "button_title": "ویرایش یادداشت",
+      "post_token": "gammaxvi",
+      "icon_button": {
+       "icon": {
+        "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/more_vert.png",
+        "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/more_vert.png",
+        "icon_name": "MORE_VERT",
+        "icon_color": "ICON_SECONDARY"
+       },
+       "action": {
+        "type": "LOAD_MENU",
+        "payload": {
+         "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+         "menu": {
+          "items": [
+           {
+            "text": "ویرایش یادداشت",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/edit.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/edit.png",
+             "icon_name": "EDIT",
+             "icon_color": "ICON_SECONDARY"
+            },
+            "action": {
+             "type": "NOTE",
+             "payload": {
+              "@type": "type.googleapis.com/widgets.NotePayload",
+              "post_token": "gammaxvi",
+              "max_character_count": 256
+             }
+            },
+            "alignment": "RIGHT"
+           },
+           {
+            "text": "حذف یادداشت",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_primary/v1/trash_o.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_primary/v1/trash_o.png",
+             "icon_name": "TRASH_O",
+             "icon_color": "ICON_PRIMARY"
+            },
+            "action": {
+             "type": "MAKE_NETWORK_CALL",
+             "payload": {
+              "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+              "grpc_request_path": "/yaad_v2.YaadV2/DeleteNoteV2",
+              "rest_request_path": "/yaad/delete-note-v2",
+              "request_data": {
+               "@type": "type.googleapis.com/yaad_v2.DeleteNoteV2Request.RequestData",
+               "token": "gammaxvi"
+              },
+              "needs_auth": true
+             }
+            },
+            "alignment": "RIGHT",
+            "state": "STATE_NEGATIVE"
+           }
+          ],
+          "banner": {}
+         },
+         "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "STATIC",
+   "widgets": [
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "گزارش آگهی",
+      "action": {
+       "type": "OPEN_FORM_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenFormPagePayload",
+        "grpc_servicer": "/post_quality.PostQualityFeedback/GetFeedbackForm",
+        "request_data": {
+         "@type": "type.googleapis.com/post_quality.GetFeedbackFormRequest.RequestData",
+         "post_token": "gammaxvi"
+        },
+        "rest_request_path": "/v8/post-quality/feedback-form"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/report.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/report.png",
+       "icon_name": "REPORT",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "BUSINESS_SECTION",
+   "widgets": [
+    {
+     "widget_type": "LAZY_SECTION",
+     "data": {
+      "@type": "type.googleapis.com/widgets.LazySectionData",
+      "rest_request_path": "/v8/premium-user/post-page/business-data/gammaxvi/lazy",
+      "grpc_request_path": "/premium_panel.PremiumPanel/GetPostBusinessLazyWidgets",
+      "request_data": {
+       "@type": "type.googleapis.com/premium_panel.GetPostBusinessLazyWidgetsRequest.RequestData",
+       "post_token": "gammaxvi",
+       "hashed_post_owner_user_id": "9bbf85358b8b865aca0b9e9a0494cfaeee6b66d3a214470cf144102f6f7f2d1f",
+       "post_business_type": "premium-panel"
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "share": {
+  "title": "هـروی _ ۹۸ متـر _ فاقد آسانسور و پارکینگ",
+  "web_url": "https://divar.ir/v/gammaxvi"
+ },
+ "seo": {
+  "title": "فروش هـروی _ ۹۸ متـر _ فاقد آسانسور و پارکینگ در تهران - ۲۴ شهریور ۱۴۰۵",
+  "description": "آگهی هـروی _ ۹۸ متـر _ فاقد آسانسور و پارکینگ در دیوار تهران",
+  "android_package_name": "ir.divar",
+  "android_app_url": "android-app://ir.divar/http/v/هـروی _ ۹۸ متـر _ فاقد آسانسور و پارکینگ/gammaxvi/",
+  "web_info": {
+   "title": "هـروی _ ۹۸ متـر _ فاقد آسانسور و پارکینگ",
+   "district_persian": "هروی",
+   "city_persian": "تهران",
+   "category_slug_persian": "فروش آپارتمان"
+  },
+  "unavailable_after": "2026-10-14T17:19:08.441706",
+  "bread_crumb": [
+   {
+    "name": "فروش آپارتمان",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "apartment-sell"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "1024"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "فروش مسکونی",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "1024"
+         ]
+        }
+       },
+       "category": {
+        "str": {
+         "value": "residential-sell"
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "املاک",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "real-estate"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "1024"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "هروی",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "1024"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "1",
+    "search_data": {
+     "form_data": {}
+    }
+   },
+   {
+    "name": "دیوار"
+   }
+  ],
+  "post_seo_schema": {
+   "@type": "Apartment",
+   "web_info": {
+    "district_persian": "هروی",
+    "category_slug_persian": "فروش آپارتمان",
+    "title": "هـروی / ۹۸ متـر / فاقد آسانسور و پارکینگ",
+    "city_persian": "تهران"
+   },
+   "name": "هـروی / ۹۸ متـر / فاقد آسانسور و پارکینگ",
+   "image": "https://s100.divarcdn.com/static/photo/neda/webp_post/YvjIgO2QRK2JXCfZUmOe5A/08c25269-07bf-47d7-ac25-f3ecac63425f.webp",
+   "floorSize": {
+    "value": "98",
+    "unitCode": "MTK",
+    "@type": "QuantitativeValue"
+   },
+   "geo": {
+    "address": "تهران, هروی",
+    "latitude": "35.767027356443",
+    "longitude": "51.47634903593",
+    "@type": "GeoCoordinates"
+   },
+   "@context": "https://schema.org",
+   "url": "https://divar.ir/v/هـروی-۹۸-متـر-فاقد-آسانسور-و-پارکینگ/gammaxvi",
+   "numberOfRooms": "دو",
+   "description": "◼️◼️◼️◼️امــلاڪ بــزرگـ\u200cـ مــاکان◼️◼️◼️◼️\n◼️◼️بزرگترین و حرفـه ای ترین در منطقـہ◼️◼️\n   ⚫⚫  به جستجـو پایــان بـده ⚫⚫\n\n⚫ ۹۸ متـر  / ۲ خواب \nتا برج ۴ سال ۱۴۰۶ مستاجر دارد ( مبلغ ۱.۳۰۰ پیش، ۶.۵۰۰ اجاره ) \n⚫ طبقه ۳.۵ ( فاقد آسانسور )\n⚫ به صورت تک واحدی\n⚫ فاقد پارکیـنگ\n⚫ تـراس \n⚫ سالن پرده خـور / رو به آفتاب \n⚫ واحد تمیز \n⚫ دسترسی عالی به مراکز خرید و اتوبانهای مجاور \n\n⚫ جهت اطلاعات بیشتر لطفا تماس حاصل فرمایید. \n\nکارشناس فروش؛ شـهاب",
+   "accommodationCategory": "فروش آپارتمان"
+  },
+  "image_url": "https://s100.divarcdn.com/static/photo/neda/post/n8VUg3hlfzipfclxRQNd9w/08c25269-07bf-47d7-ac25-f3ecac63425f.jpg"
+ },
+ "contact": {
+  "chat_enabled": true,
+  "action_log": {
+   "server_side_info": {
+    "info": {
+     "@type": "type.googleapis.com/action_log.ContactInfoInfo",
+     "post_token": "gammaxvi",
+     "method_name": "GetContactWeb",
+     "contact_uuid": "36431fdc-1b2a-45bd-b622-38a658951ad3"
+    },
+    "item_type": {
+     "type": "CONTACT_INFO"
+    }
+   },
+   "enabled": true
+  },
+  "contact_uuid": "36431fdc-1b2a-45bd-b622-38a658951ad3"
+ },
+ "webengage": {
+  "city": "tehran",
+  "business_type": "premium-panel",
+  "image_count": 1,
+  "business_ref": "CUVUyVYz_pQRgYEXa",
+  "token": "gammaxvi",
+  "source_view": "",
+  "originality": "",
+  "credit": 0,
+  "gender": "",
+  "cat_2": "residential-sell",
+  "price": 20500000768,
+  "category": "apartment-sell",
+  "brand_model": "",
+  "cat_3": "apartment-sell",
+  "status": "",
+  "district": "heravi",
+  "rent": 0,
+  "cat_1": "real-estate"
  },
  "analytics": {
   "cat1": "real-estate",
