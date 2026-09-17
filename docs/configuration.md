@@ -98,7 +98,7 @@ scoring:
 - **غایب در برابر null:** فیلد **غایب** (منبع ندارد) → کل قاعده `skip` (یا `zero` مطابق `on_missing_field`)؛ فیلد با مقدار **null صریح** (مثل قیمت «توافقی») → فقط `== null`/`!= null` ارزیابی می‌شود و قواعد عددی `skip` می‌شوند — قیمت توافقی آگهی را حذف نمی‌کند ولی جریمه می‌گیرد.
 - `points` می‌تواند منفی باشد (جریمه). امتیاز نهایی = جمع امتیاز همه قواعد برقرار (در tiers فقط پله اول).
 - `score >= min_score` → نوتیف؛ **پیام شامل امتیاز کل و شکست آن است** تا کالیبره‌کردن قواعد ممکن باشد.
-- قواعد نسبی کمیابی → فاز بعد (backlog). معیار مصوب: **درصد/صدک زیر میانهٔ قیمت‌متری همتای غلتان** + `robust_z` (ADR-0008). عبارت قدیمی `below_neighborhood_avg` کنار گذاشته شد (مرجع میانگین نیست). پیش‌نیاز `size` / `price_per_square` از جزئیات تأمین شده؛ خود بلوک `relative` هنوز فعال نمی‌شود. قالب کانفیگ (شامل باند متراژ ±۲۰٪ با کف `min_size_band_width_m: 7.5`، جدول مجاورت `neighbor_map` و قاعدهٔ `robust_z_lte`)، تعریف همتا، پنجرهٔ زمانی و شکست امتیاز: [`deal-scoring.md`](deal-scoring.md) بخش‌های ۴، ۶ و ۹.
+- قواعد نسبی کمیابی → فاز بعد (backlog). معیار مصوب: **درصد/صدک زیر میانهٔ قیمت‌متری مؤثر همتای غلتان** (`pps_eff` — متراژ مؤثر) + `robust_z` (ADR-0008). عبارت قدیمی `below_neighborhood_avg` کنار گذاشته شد (مرجع میانگین نیست). پیش‌نیاز `size` / `price_per_square` از جزئیات تأمین شده؛ خود بلوک `relative` هنوز فعال نمی‌شود. قالب کانفیگ (شامل باند متراژ ±۲۰٪ با کف `min_size_band_width_m: 7.5`، باند سن نسبی `age_band_years`، متراژ مؤثر با نقشهٔ `amenity_eq_m` و فرمول آسانسور `elevator_eq_per_floor` / `elevator_eq_cap`، جدول مجاورت `neighbor_map` و قاعدهٔ `robust_z_lte`)، تعریف همتا، پنجرهٔ زمانی و شکست امتیاز: [`deal-scoring.md`](deal-scoring.md) بخش‌های ۴، ۶ و ۹. purge مرتبط از بلوک `history` (بخش ۵) مشتق می‌شود.
 
 ## ۳. اطلاع‌رسانی (`notify`)
 
@@ -165,7 +165,7 @@ https://divar.ir/v/gapa1FMk
 ### ۳.۳. شکست امتیاز در پیام — فشرده
 
 - فقط **قواعد برقرار** به‌صورت «نام: امتیاز» با جداکنندهٔ «·».
-- قاعدهٔ نسبیِ skipشده → دلیل آن می‌آید (مثل `cohort_too_small`؛ `deal-scoring.md` بخش ۶). در فاز نسبی، آمار همتا (`cohort_median_pps`، `discount_pct`، `percentile`، `robust_z`) به همین شکل فشرده ثبت می‌شود.
+- قاعدهٔ نسبیِ skipشده → دلیل آن می‌آید (مثل `cohort_too_small` / `missing_construction_year`؛ `deal-scoring.md` بخش ۶). در فاز نسبی، آمار همتا (`cohort_median_pps` + `cohort_median_pps_eff`، `candidate_pps` + `candidate_pps_eff`، `discount_pct`، `percentile`، `robust_z`) به همین شکل فشرده ثبت می‌شود — مبنای تصمیم مقادیر مؤثر (`pps_eff`) است و نمایش کاربر روی قیمت‌متری واقعی می‌ماند.
 - نمایش دلار در پیام ساخته نمی‌شود (ADR-0008).
 
 ### ۳.۴. ایمیل
@@ -198,7 +198,20 @@ polling:
   fetch_post_detail: true         # GET posts-v2/web برای آگهی جدید پس از جغرافیا (ADR-0009)
 ```
 
-## ۵. متغیرهای محیطی (`.env`)
+## ۵. تاریخچه (`history`)
+
+بلوک سطح‌بالای **لایهٔ ذخیره‌گاه** — مستقل از `scoring` و **از MVP فعال** (حتی وقتی `scoring.relative` نیست یا `enabled: false` است):
+
+```yaml
+history:
+  purge_margin_days: 7               # purge_after_days = window_days_max + purge_margin_days
+```
+
+- فرمول purge (ADR-0001؛ مصوب ۲۰۲۶-۰۹-۱۷ جلسهٔ دوم): `purge_after_days = window_days_max + purge_margin_days` — حاشیهٔ ۷ روز برای مرز `sort_date`؛ سنجهٔ purge همان `sort_date` است.
+- `window_days_max` **پیش‌فرض سامانه‌ای ۳۰** دارد: کلید تنظیم پنجرهٔ همتا داخل `scoring.relative` است، ولی وقتی آن بلوک غایب/غیرفعال است، ذخیره‌گاه همان ۳۰ را مبنا می‌گذارد → purge در MVP = ۳۰+۷ = **۳۷ روز**؛ فعال‌شدن فاز نسبی فقط مبدأ فرمول را از پیش‌فرض سامانه‌ای به مقدار کانفیگ عوض می‌کند.
+- برای حفظ dedup، tombstone مینیمال (token + آخرین `sort_date` دیده‌شده) نگه داشته می‌شود (ADR-0001؛ `deal-scoring.md` بخش ۴.۴).
+
+## ۶. متغیرهای محیطی (`.env`)
 
 ```
 TELEGRAM_BOT_TOKEN=...            # هرگز commit نمی‌شود
@@ -207,12 +220,13 @@ SMTP_PASSWORD=...                 # رمز SMTP؛ لازم فقط اگر کان�
 # HTTPS_PROXY=...                 # اگر بود، TelegramNotifier از آن استفاده می‌کند (ADR-0002)
 ```
 
-## ۶. اعتبارسنجی startup
+## ۷. اعتبارسنجی startup
 
 1. ساختار YAML (schema validation).
 2. `id` یکتا؛ `interval >= polling.default_interval` حداقل مجاز.
 3. فیلدهای قواعد امتیازدهی ⊆ فیلدهای نرمال‌شده شناخته‌شده (`divar-api.md` بخش ۷.۱ / ۷.۲ / ۷.۴) (خطا).
 4. کلیدهای `form_data` ناشناخته → هشدار (نه خطا).
 5. وجود `.env` و مقادیر لازم برای کانال‌های فعال (خطا): کانال `telegram` فعال → `TELEGRAM_BOT_TOKEN` و `TELEGRAM_BOT_PASSWORD`؛ کانال `email` فعال → `SMTP_PASSWORD` و `to` غیرخالی.
-6. `notify.telegram.backfill_days <= window_days_max (۳۰)` (خطا) — سازگاری با purge و سقف ارسال‌مجدد (ADR-0010).
+6. `notify.telegram.backfill_days <= window_days_max` (خطا) — مبنای `window_days_max`: مقدار `scoring.relative.window_days_max` اگر بلوک نسبی فعال باشد، وگرنه پیش‌فرض سامانه‌ای ۳۰ (مصوب ۲۰۲۶-۰۹-۱۷ جلسهٔ دوم؛ سازگاری با purge مشتق‌شده و سقف ارسال‌مجدد — ADR-0010).
 7. `polling.search_min_interval` یا `polling.detail_min_interval` کمتر از `5s` → هشدار (خطا نیست).
+8. `history.purge_margin_days` اگر حضور داشت ≥ ۰ (خطا اگر منفی).
