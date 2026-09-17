@@ -106,9 +106,11 @@ notify:
   telegram:
     chat_id: "123456789"
     # توکن بات فقط از .env → TELEGRAM_BOT_TOKEN
-  message:
-    fields: [title, price, price_per_square, size, rooms, construction_year, building_age, floor, has_parking, has_elevator, has_warehouse, district, city, score, score_breakdown, link]
-    link_template: "https://divar.ir/v/{token}"
+    message:
+      fields: [title, price, price_per_square, size, rooms, construction_year, building_age, floor, has_parking, has_elevator, has_warehouse, district, city, published_at, score, score_breakdown, link]
+      link_template: "https://divar.ir/v/{token}"
+      # published_at = زمان انتشار اولیهٔ آگهی در دیوار — از جزئیات آگهی (divar-api.md بخش ۷.۴)؛
+      # سطر غایب در ویجت → فیلد غایب → آن فیلد از پیام حذف می‌شود (نمایش شمسی طبق بخش ۸.۱)
     # فاز نسبی: score_breakdown شامل cohort_median_pps، discount_pct، percentile
     # (docs/deal-scoring.md بخش ۶). نمایش دلار در پیام پیش‌فرض خاموش است (ADR-0008).
 ```
