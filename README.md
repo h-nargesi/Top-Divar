@@ -17,6 +17,7 @@
 - [API دیوار](docs/divar-api.md)
 - [کانفیگ](docs/configuration.md)
 - [معیار کمیابی و امتیاز به‌صرفه بودن](docs/deal-scoring.md)
+- [واژه‌نامه](docs/glossary.md)
 
 ## مشارکت با ایجنت‌ها
 
