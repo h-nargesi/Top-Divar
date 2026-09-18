@@ -1,4 +1,5 @@
-> نمونه‌های خام Captured از DevTools (فقط مرجع؛ بدنهٔ پاسخ‌های خام را دستکاری نکنید).
+> نمونه‌های خام Captured از DevTools (مرجع؛ ساختار پاسخ‌ها دستکاری نشود).
+> **اسکراب ۲۰۲۶-۰۹-۱۸:** اطلاعات تماس (نام مشاور/آژانس) با نشان `REDACTED` جایگزین شده‌اند — کلیدها و ساختار JSON دست‌نخورده و فیکسچرها قابل‌استفاده‌اند؛ الگوی «REDACTED در ⟨محله⟩» همان الگوی «⟨مشاور/آژانس⟩ در ⟨محله⟩» است (heuristic آیندهٔ `is_dealer` — `divar-api.md` بخش ۵).
 > تحلیل کامل ساختار درخواست/پاسخ و نگاشت فیلدها: [`divar-api.md`](divar-api.md) — طرح کانفیگ متناظر: [`configuration.md`](configuration.md)
 > جزئیات آگهی: بخش `## post detail (posts-v2/web)` (JSON عملیاتی) و بخش `## fetch` (HTML fallback).
 
@@ -291,7 +292,7 @@ response:
      }
     },
     "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/eMD6NTvRQ4vBjodG6FA-fg/14ac5720-6d0b-48a5-a17e-9eaaf44be506.webp",
-    "bottom_description_text": "آژانس ملکاتو در سعادت\u200cآباد",
+    "bottom_description_text": "REDACTED در سعادت\u200cآباد",
     "middle_description_text": "۵۲,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 5,
@@ -484,7 +485,7 @@ response:
      }
     },
     "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/pWdbhFA6aTCPtRtcqV3mug/11b0d23d-20f6-498d-9730-d3fad45dd9d7.webp",
-    "bottom_description_text": "آژانس املاک آبتین در سعادت\u200cآباد",
+    "bottom_description_text": "REDACTED در سعادت\u200cآباد",
     "middle_description_text": "۵۵,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 8,
@@ -677,7 +678,7 @@ response:
      }
     },
     "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/tBGZCB3y-YPSpNr3wACcog/c65c4fb2-2280-4b22-a404-176751180a26.webp",
-    "bottom_description_text": "املاک یوسفيان      در سعادت\u200cآباد",
+    "bottom_description_text": "REDACTED در سعادت\u200cآباد",
     "middle_description_text": "۴۱,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 1,
@@ -1063,7 +1064,7 @@ response:
      }
     },
     "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/La4CNKVndRnR4aWfcfLQsA/b1b7b5d3-16dd-48af-b0f0-44826fe3feac.webp",
-    "bottom_description_text": "مشاور اقای تهرانی در سعادت\u200cآباد",
+    "bottom_description_text": "REDACTED در سعادت\u200cآباد",
     "middle_description_text": "۴۴,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 15,
@@ -1256,7 +1257,7 @@ response:
      }
     },
     "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/fGzEPHgjUjq_X4pkPicqDA/2f2b1ef4-3ac4-46fa-b371-de3661edce93.webp",
-    "bottom_description_text": "آژانس مسکن رازان میرداماد در دریا",
+    "bottom_description_text": "REDACTED در دریا",
     "red_text": "نردبان شده",
     "middle_description_text": "۳۳,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
@@ -1448,7 +1449,7 @@ response:
      }
     },
     "image_url": "https://s100.divarcdn.com/static/photo/neda/webp_thumbnail/EtrgTIoHah6tC9OEDna84A/c88dae79-9751-436f-b0f8-413933375964.webp",
-    "bottom_description_text": "آژانس مسکن متراژ در سعادت\u200cآباد",
+    "bottom_description_text": "REDACTED در سعادت\u200cآباد",
     "middle_description_text": "۳۲,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 18,
@@ -2372,7 +2373,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/xk063r5G3uoAY60RcpgqFA/ec5b49bc-0d35-4126-b9ad-15266c8b5571.webp",
-    "bottom_description_text": "مشاوره تخصصی املاک نارمک محمدی در مدائن",
+    "bottom_description_text": "REDACTED در مدائن",
     "middle_description_text": "۲۱,۵۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 1,
@@ -2567,7 +2568,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/5_Q_fsi2M27QTsyx6xSp8Q/d44ae7a0-c85e-4aa7-b633-2138a514684f.webp",
-    "bottom_description_text": "آژانس گروه مشاورین املاک ایده نو نارمک در هفت حوض",
+    "bottom_description_text": "REDACTED در هفت حوض",
     "middle_description_text": "۲۵,۲۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 17,
@@ -2762,7 +2763,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/PP8qcdCUElG7NkHEFPJ98A/cf4f3613-9f38-49fc-84b9-7e49bdfa8ce3.webp",
-    "bottom_description_text": "املاک بزرگ دلتا کاسپین در دردشت",
+    "bottom_description_text": "REDACTED در دردشت",
     "middle_description_text": "۲۸,۴۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 2,
@@ -2957,7 +2958,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/jH2gDF0kyZ2GAwcNL48EKw/3d8ed800-d16d-4cb4-98e4-c67b38cf96dd.webp",
-    "bottom_description_text": "آژانس املاک بزرگ اسکان در هفت حوض",
+    "bottom_description_text": "REDACTED در هفت حوض",
     "red_text": "نردبان شده",
     "middle_description_text": "۳۱,۸۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
@@ -3153,7 +3154,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/fLOj-vDf9CBcbpNySOzgxA/0c6fa2b2-1e71-483c-8553-7087c971b324.webp",
-    "bottom_description_text": "مسکن سیاوش در هفت حوض",
+    "bottom_description_text": "REDACTED در هفت حوض",
     "red_text": "نردبان شده",
     "middle_description_text": "۴۱,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
@@ -3349,7 +3350,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/kFyk7Rb8CY2niwYHqdnsQQ/24c57749-586d-4709-914a-b4d7327c8a33.webp",
-    "bottom_description_text": "مسکن پرستیژ در درختی",
+    "bottom_description_text": "REDACTED در درختی",
     "red_text": "نردبان شده",
     "middle_description_text": "۳۰,۵۵۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
@@ -3543,7 +3544,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/WFMb4cR0sC2yNyOfzePd3w/2d2b513c-b247-4e0b-b30e-acb4101dee25.webp",
-    "bottom_description_text": "املاک بزرگ دلتا کاسپین در دردشت",
+    "bottom_description_text": "REDACTED در دردشت",
     "red_text": "نردبان شده",
     "middle_description_text": "۱۲,۷۹۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
@@ -3739,7 +3740,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/mw0bYvoPH3j9mEZLStFduA/7267a354-e97c-47b0-a6c7-068bb24ee0e7.webp",
-    "bottom_description_text": "آژانس شاهان در گلستان (شهرک راه آهن)",
+    "bottom_description_text": "REDACTED در گلستان (شهرک راه آهن)",
     "middle_description_text": "۲۵,۵۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 2,
@@ -3934,7 +3935,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/m6xoLuxvwTcIOVDyfQJ-TA/df457caa-4361-413b-9202-d36a2fc9bc39.webp",
-    "bottom_description_text": "سرزمین ملکی راشا در گلستان (شهرک راه آهن)",
+    "bottom_description_text": "REDACTED در گلستان (شهرک راه آهن)",
     "middle_description_text": "۲۸,۷۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 6,
@@ -4129,7 +4130,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/eoT82rNCkQFhYshu-rQaPQ/7e6c55c2-7b9e-4817-8993-2de3f656cc0c.webp",
-    "bottom_description_text": "مسكن نور ۰ مقدم در گلستان (شهرک راه آهن)",
+    "bottom_description_text": "REDACTED در گلستان (شهرک راه آهن)",
     "red_text": "نردبان شده",
     "middle_description_text": "۲۲,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
@@ -4325,7 +4326,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/4ZgpyK_967CsM27ZxBfc6Q/ddf32f50-2968-4d03-b0d4-1457cd847838.webp",
-    "bottom_description_text": "آژانس شاهان در گلستان (شهرک راه آهن)",
+    "bottom_description_text": "REDACTED در گلستان (شهرک راه آهن)",
     "middle_description_text": "۳۳,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 2,
@@ -4520,7 +4521,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/ji9Pf3NpK_DY2z-Ac1wppg/e3fa3204-dd6d-4ed0-aae4-1d20d0ffa036.webp",
-    "bottom_description_text": "آژانس خانه ايران شعبه بلوار در سعادت\u200cآباد",
+    "bottom_description_text": "REDACTED در سعادت\u200cآباد",
     "red_text": "نردبان شده",
     "middle_description_text": "۶۳,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
@@ -4716,7 +4717,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/XXpimQmGLmI9NJuRrSrlVQ/7343148d-432f-417f-b93a-f103e2d0072b.webp",
-    "bottom_description_text": "املاک بزرگ ارمان نارمک در هفت حوض",
+    "bottom_description_text": "REDACTED در هفت حوض",
     "middle_description_text": "۱۲,۵۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
     "image_count": 12,
@@ -4911,7 +4912,7 @@ response:
      }
     },
     "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/wjB1Z82NV7udLJ1jS0yk2A/a4787a22-e6d3-4189-992b-194d9c3014e1.webp",
-    "bottom_description_text": "املاک رشید در آسمان",
+    "bottom_description_text": "REDACTED در آسمان",
     "red_text": "نردبان شده",
     "middle_description_text": "۶۳,۰۰۰,۰۰۰,۰۰۰ تومان",
     "has_divider": true,
@@ -5599,7 +5600,7 @@ response:
      "widget_type": "DESCRIPTION_ROW",
      "data": {
       "@type": "type.googleapis.com/widgets.DescriptionRowData",
-      "text": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، عرفان\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
+      "text": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، REDACTED\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
       "is_primary": true,
       "text_alignment": "RIGHT"
      }
@@ -6231,7 +6232,7 @@ response:
   ],
   "post_seo_schema": {
    "@type": "Apartment",
-   "description": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، عرفان\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
+   "description": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، REDACTED\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
    "accommodationCategory": "فروش آپارتمان",
    "url": "https://divar.ir/v/۹۷-متر-۲-خواب-دونبش-دید-ابدی/gap5-Twe",
    "name": "۹۷ متر ۲ خواب دونبش // دید ابدی",
@@ -6508,7 +6509,7 @@ response:
      "widget_type": "DESCRIPTION_ROW",
      "data": {
       "@type": "type.googleapis.com/widgets.DescriptionRowData",
-      "text": "◼️◼️◼️◼️امــلاڪ بــزرگـ\u200cـ مــاکان◼️◼️◼️◼️\n◼️◼️بزرگترین و حرفـه ای ترین در منطقـہ◼️◼️\n   ⚫⚫  به جستجـو پایــان بـده ⚫⚫\n\n⚫ ۹۸ متـر  / ۲ خواب \nتا برج ۴ سال ۱۴۰۶ مستاجر دارد ( مبلغ ۱.۳۰۰ پیش، ۶.۵۰۰ اجاره ) \n⚫ طبقه ۳.۵ ( فاقد آسانسور )\n⚫ به صورت تک واحدی\n⚫ فاقد پارکیـنگ\n⚫ تـراس \n⚫ سالن پرده خـور / رو به آفتاب \n⚫ واحد تمیز \n⚫ دسترسی عالی به مراکز خرید و اتوبانهای مجاور \n\n⚫ جهت اطلاعات بیشتر لطفا تماس حاصل فرمایید. \n\nکارشناس فروش؛ شـهاب",
+      "text": "◼️◼️◼️◼️امــلاڪ بــزرگـ\u200cـ مــاکان◼️◼️◼️◼️\n◼️◼️بزرگترین و حرفـه ای ترین در منطقـہ◼️◼️\n   ⚫⚫  به جستجـو پایــان بـده ⚫⚫\n\n⚫ ۹۸ متـر  / ۲ خواب \nتا برج ۴ سال ۱۴۰۶ مستاجر دارد ( مبلغ ۱.۳۰۰ پیش، ۶.۵۰۰ اجاره ) \n⚫ طبقه ۳.۵ ( فاقد آسانسور )\n⚫ به صورت تک واحدی\n⚫ فاقد پارکیـنگ\n⚫ تـراس \n⚫ سالن پرده خـور / رو به آفتاب \n⚫ واحد تمیز \n⚫ دسترسی عالی به مراکز خرید و اتوبانهای مجاور \n\n⚫ جهت اطلاعات بیشتر لطفا تماس حاصل فرمایید. \n\nکارشناس فروش؛ REDACTED",
       "is_primary": true,
       "text_alignment": "RIGHT"
      }
@@ -7192,7 +7193,7 @@ response:
    "@context": "https://schema.org",
    "url": "https://divar.ir/v/هـروی-۹۸-متـر-فاقد-آسانسور-و-پارکینگ/gammaxvi",
    "numberOfRooms": "دو",
-   "description": "◼️◼️◼️◼️امــلاڪ بــزرگـ\u200cـ مــاکان◼️◼️◼️◼️\n◼️◼️بزرگترین و حرفـه ای ترین در منطقـہ◼️◼️\n   ⚫⚫  به جستجـو پایــان بـده ⚫⚫\n\n⚫ ۹۸ متـر  / ۲ خواب \nتا برج ۴ سال ۱۴۰۶ مستاجر دارد ( مبلغ ۱.۳۰۰ پیش، ۶.۵۰۰ اجاره ) \n⚫ طبقه ۳.۵ ( فاقد آسانسور )\n⚫ به صورت تک واحدی\n⚫ فاقد پارکیـنگ\n⚫ تـراس \n⚫ سالن پرده خـور / رو به آفتاب \n⚫ واحد تمیز \n⚫ دسترسی عالی به مراکز خرید و اتوبانهای مجاور \n\n⚫ جهت اطلاعات بیشتر لطفا تماس حاصل فرمایید. \n\nکارشناس فروش؛ شـهاب",
+   "description": "◼️◼️◼️◼️امــلاڪ بــزرگـ\u200cـ مــاکان◼️◼️◼️◼️\n◼️◼️بزرگترین و حرفـه ای ترین در منطقـہ◼️◼️\n   ⚫⚫  به جستجـو پایــان بـده ⚫⚫\n\n⚫ ۹۸ متـر  / ۲ خواب \nتا برج ۴ سال ۱۴۰۶ مستاجر دارد ( مبلغ ۱.۳۰۰ پیش، ۶.۵۰۰ اجاره ) \n⚫ طبقه ۳.۵ ( فاقد آسانسور )\n⚫ به صورت تک واحدی\n⚫ فاقد پارکیـنگ\n⚫ تـراس \n⚫ سالن پرده خـور / رو به آفتاب \n⚫ واحد تمیز \n⚫ دسترسی عالی به مراکز خرید و اتوبانهای مجاور \n\n⚫ جهت اطلاعات بیشتر لطفا تماس حاصل فرمایید. \n\nکارشناس فروش؛ REDACTED",
    "accommodationCategory": "فروش آپارتمان"
   },
   "image_url": "https://s100.divarcdn.com/static/photo/neda/post/n8VUg3hlfzipfclxRQNd9w/08c25269-07bf-47d7-ac25-f3ecac63425f.jpg"
@@ -11721,7 +11722,7 @@ https://divar.ir/v/%DB%B9%DB%B7-%D9%85%D8%AA%D8%B1-%DB%B2-%D8%AE%D9%88%D8%A7%D8%
 ⚜️ دو ساله، کلید نخورده و آماده تحویل!
 ⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.
 
-کارشناس فروش منطقه، عرفان
+کارشناس فروش منطقه، REDACTED
  برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.</p>
                                                 </div>
                                             </div>
@@ -15498,7 +15499,7 @@ https://divar.ir/v/%DB%B9%DB%B7-%D9%85%D8%AA%D8%B1-%DB%B2-%D8%AE%D9%88%D8%A7%D8%
                                     "widget_type": "DESCRIPTION_ROW",
                                     "data": {
                                         "@type": "type.googleapis.com\u002Fwidgets.DescriptionRowData",
-                                        "text": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، عرفان\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
+                                        "text": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، REDACTED\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
                                         "has_divider": false,
                                         "is_primary": true,
                                         "expandable": false,
@@ -16494,7 +16495,7 @@ https://divar.ir/v/%DB%B9%DB%B7-%D9%85%D8%AA%D8%B1-%DB%B2-%D8%AE%D9%88%D8%A7%D8%
                         "latitude": "35.73463475119"
                     },
                     "@context": "https:\u002F\u002Fschema.org",
-                    "description": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، عرفان\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
+                    "description": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، REDACTED\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
                     "floorSize": {
                         "value": "97",
                         "unitCode": "MTK",
