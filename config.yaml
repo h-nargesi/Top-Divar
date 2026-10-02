@@ -1,0 +1,77 @@
+# کانفیگ Top Divar — مرجع کلیدها: docs/configuration.md
+# مقادیر حساس (توکن، رمز) هرگز اینجا نمی‌آیند؛ فقط از .env (که gitignore است).
+
+searches:
+  - id: tehran-apt-40-60
+    label: آپارتمان تهران
+    enabled: true
+    interval: 5m
+    city_ids: ["1"]
+    sort: sort_date
+
+    # دقیقاً همان form_data دیوار؛ pass-through، بدون هیچ ترجمه‌ای
+    form_data:
+      category: {str: {value: apartment-sell}}
+      price: {number_range: {minimum: "10000000000", maximum: "15000000000"}}
+      price_per_square: {number_range: {minimum: "256000000", maximum: "300000000"}}
+      size: {number_range: {minimum: "40", maximum: "60"}}
+      rooms: {repeated_string: {value: ["یک", "دو"]}}
+      building-age: {number_range: {minimum: "10", maximum: "15"}}
+      floor: {number_range: {minimum: "0", maximum: "8"}}
+      elevator: {boolean: {value: true}}
+      parking: {boolean: {value: true}}
+      warehouse: {boolean: {value: true}}
+      rebuilt: {boolean: {value: true}}
+
+    scoring_ref: default
+
+scoring:
+  default:
+    min_score: 60
+    on_missing_field: skip
+    rules:
+      - field: price
+        tiers:
+          - {op: "<=", value: 12000000000, points: 30}
+          - {op: "<=", value: 13500000000, points: 15}
+          - {op: "<=", value: 15000000000, points: 5}
+      - field: price_per_square
+        tiers:
+          - {op: "<=", value: 280000000, points: 20}
+          - {op: "<=", value: 350000000, points: 10}
+      - field: building_age
+        tiers:
+          - {op: "<=", value: 5, points: 15}
+          - {op: "<=", value: 15, points: 5}
+      - {field: has_parking, op: "==", value: true, points: 5}
+      - {field: has_elevator, op: "==", value: true, points: 5}
+      - {field: rooms, op: ">=", value: 2, points: 5}
+
+polling:
+  search_min_interval: 30s
+  detail_min_interval: 30s
+  min_interval: 5m
+  default_interval: 5m
+  max_pages_per_poll: 5
+  notify_on_bump: false
+  fetch_post_detail: true
+
+notify:
+  channels: []
+  # بعد از ساخت فاز ارسال (مرحلهٔ ۶) کانال‌ها فعال می‌شوند؛ مثال:
+  # channels: [telegram, email]
+  # telegram:
+  #   backfill_days: 7
+  # email:
+  #   smtp:
+  #     host: smtp.example.com
+  #     port: 587
+  #     encryption: starttls
+  #     username: bot@example.com
+  #     password_env: SMTP_PASSWORD
+  #     from: "Top Divar <bot@example.com>"
+  #   to:
+  #     - user1@example.com
+
+history:
+  purge_margin_days: 7

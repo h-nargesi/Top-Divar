@@ -23,19 +23,20 @@
 
 ## دستورات
 
-هنوز دستور build/lint/test وجود ندارد. پس از تعیین پشته فناوری، دستورات مربوطه را اینجا ثبت کنید:
-
 ```
-# TODO: مثلاً
-# pip install -r requirements.txt
-# python -m top_divar
-# pytest
+pip install -r requirements-dev.txt   # وابستگی‌های اجرا + تست (PyYAML، python-dotenv، pytest)
+python3 -m pytest                     # تست‌ها (pytest.ini داخل pyproject.toml است)
+PYTHONPATH=src python3 -m top_divar validate   # اعتبارسنجی config.yaml و .env
+PYTHONPATH=src python3 -m top_divar run        # اجرای سرویس (فعلاً اسکلت مرحلهٔ ۱)
 ```
 
-## ساختار پوشه‌ها (پیشنهادی اولیه)
+نکته: اگر بسته با `pip install .` نصب شود، دستور کنسولی `top-divar` هم در دسترس است و `PYTHONPATH` لازم نیست.
+
+## ساختار پوشه‌ها
 
 ```
 docs/        # مستندات + مراحل پیاده‌سازی
-src/         # کد منبع (از مرحلهٔ ۱)
+src/         # کد منبع (بستهٔ top_divar)
 tests/       # تست‌ها (همراه هر مرحله)
+config.yaml  # کانفیگ نسخه‌بندی‌شده (بدون secret)
 ```
