@@ -60,6 +60,52 @@ def _optional_text(value, name: str):
     raise StorageError(f"فیلد «{name}» آگهی باید رشته یا null باشد («{value!r}»).")
 
 
+def _prepare_ad_columns(record: dict) -> dict:
+    """اعتبارسنجی و آماده‌سازی فیلدهای مشترک آگهی برای درج/به‌روزرسانی (مرحلهٔ ۴)."""
+    if record.get("sort_date") is None:
+        raise StorageError("sort_date آگهی لازم است و نمی‌تواند null باشد.")
+    values = {
+        "title": _optional_text(record.get("title"), "title"),
+        "price": _optional_int(record.get("price"), "price"),
+        "price_per_square": _optional_int(
+            record.get("price_per_square"), "price_per_square"
+        ),
+        "size": _optional_int(record.get("size"), "size"),
+        "rooms": _optional_int(record.get("rooms"), "rooms"),
+        "construction_year": _optional_int(
+            record.get("construction_year"), "construction_year"
+        ),
+        "building_age": _optional_int(record.get("building_age"), "building_age"),
+        "floor": _optional_int(record.get("floor"), "floor"),
+        "total_floors": _optional_int(record.get("total_floors"), "total_floors"),
+        "has_parking": _optional_bool(record.get("has_parking"), "has_parking"),
+        "has_elevator": _optional_bool(record.get("has_elevator"), "has_elevator"),
+        "has_warehouse": _optional_bool(record.get("has_warehouse"), "has_warehouse"),
+        "district": _optional_text(record.get("district"), "district"),
+        "city": _optional_text(record.get("city"), "city"),
+        "is_promoted": _optional_bool(record.get("is_promoted", False), "is_promoted"),
+        "image_count": _optional_int(record.get("image_count"), "image_count"),
+        "sort_date": canonical_utc(record["sort_date"], what="sort_date"),
+        "published_at": (
+            canonical_utc(record["published_at"], what="published_at")
+            if record.get("published_at") is not None
+            else None
+        ),
+        "last_bumped_at": (
+            canonical_utc(record["last_bumped_at"], what="last_bumped_at")
+            if record.get("last_bumped_at") is not None
+            else None
+        ),
+        "last_updated_at": (
+            canonical_utc(record["last_updated_at"], what="last_updated_at")
+            if record.get("last_updated_at") is not None
+            else None
+        ),
+        "raw_json": _optional_text(record.get("raw_json"), "raw_json"),
+    }
+    return values
+
+
 class SqliteRepository:
     def __init__(self, db_path):
         self._db_path = db_path
@@ -196,6 +242,126 @@ class SqliteRepository:
                 "SELECT * FROM ads WHERE token = ?", (token,)
             ).fetchone()
             return dict(row) if row is not None else None
+
+        return await self._call(op)
+
+    async def refresh_ad(self, token: str, record: dict) -> bool:
+        """به‌روزرسانی کامل ردیف آگهی بعد از نردبان/ویرایش (bump — مرحلهٔ ۴).
+
+        record همان فیلدهای insert_ad (شامل sort_date تازه) است؛
+        scoring_state به «pending» برمی‌گردد تا خط لولهٔ امتیازدهی دسته
+        دوباره آن را بگیرد (ADR-0001 — تصمیم ۱۹).
+        """
+        if not isinstance(token, str) or not token.strip():
+            raise StorageError("توکن آگهی باید رشتهٔ غیرخالی باشد.")
+        values = _prepare_ad_columns(record)
+        values["scoring_state"] = "pending"
+        values["updated_at"] = utc_now_iso()
+        assignments = ", ".join(f"{column} = ?" for column in values)
+
+        def op(conn: sqlite3.Connection):
+            cursor = conn.execute(
+                f"UPDATE ads SET {assignments} WHERE token = ?",
+                [*values.values(), token],
+            )
+            return cursor.rowcount > 0
+
+        return await self._call(op)
+
+    async def refresh_ad_from_card(
+        self,
+        token: str,
+        sort_date,
+        *,
+        title=None,
+        is_promoted=False,
+        image_count=None,
+    ) -> bool:
+        """به‌روزرسانی سبک نردبان وقتی جزئیات درنیامد: فقط فیلدهای کارت search.
+
+        فیلدهای وابسته به جزئیات (متراژ، قیمت‌متری، امکانات، …) دست‌نخورده
+        می‌مانند تا دادهٔ قبلی از دست نرود (divar-api.md بخش ۹.۹).
+        """
+        if not isinstance(token, str) or not token.strip():
+            raise StorageError("توکن آگهی باید رشتهٔ غیرخالی باشد.")
+        values = {
+            "sort_date": canonical_utc(sort_date, what="sort_date"),
+            "title": _optional_text(title, "title"),
+            "is_promoted": _optional_bool(is_promoted, "is_promoted"),
+            "image_count": _optional_int(image_count, "image_count"),
+            "updated_at": utc_now_iso(),
+        }
+        assignments = ", ".join(f"{column} = ?" for column in values)
+
+        def op(conn: sqlite3.Connection):
+            cursor = conn.execute(
+                f"UPDATE ads SET {assignments} WHERE token = ?",
+                [*values.values(), token],
+            )
+            return cursor.rowcount > 0
+
+        return await self._call(op)
+
+    async def record_search_match(self, ad_id: int, search_id: str) -> bool:
+        """ثبت ارتباط (آگهی، جستجو)؛ True یعنی ردیف تازه ساخته شد (ADR-0007).
+
+        توکن سراسری بین جستجوهاست؛ جستجوی بعدی فقط همین فهرست را کامل
+        می‌کند — بدون ذخیره یا جزئیات دوباره (divar-api.md بخش ۹.۱۰).
+        """
+        if not isinstance(search_id, str) or not search_id.strip():
+            raise StorageError("شناسهٔ جستجو باید رشتهٔ غیرخالی باشد.")
+
+        def op(conn: sqlite3.Connection):
+            if (
+                conn.execute("SELECT 1 FROM ads WHERE id = ?", (ad_id,)).fetchone()
+                is None
+            ):
+                raise StorageError(f"آگهی با شناسهٔ {ad_id} پیدا نشد.")
+            cursor = conn.execute(
+                """
+                INSERT OR IGNORE INTO matched_searches (ad_id, search_id, first_seen_at)
+                VALUES (?, ?, ?)
+                """,
+                (ad_id, search_id, utc_now_iso()),
+            )
+            return cursor.rowcount > 0
+
+        return await self._call(op)
+
+    async def get_matched_searches(self, ad_id: int) -> list:
+        def op(conn: sqlite3.Connection):
+            rows = conn.execute(
+                """
+                SELECT search_id FROM matched_searches
+                WHERE ad_id = ? ORDER BY first_seen_at, id
+                """,
+                (ad_id,),
+            ).fetchall()
+            return [row["search_id"] for row in rows]
+
+        return await self._call(op)
+
+    async def touch_tombstone(self, token: str, sort_date):
+        """به‌روزرسانی آخرین sort_date دیده‌شدهٔ سنگ قبر؛ فقط جلو رفتن.
+
+        None یعنی سنگ قبری برای این توکن نیست (آگهی هنوز دیده نشده یا
+        purge نشده). سنگ قبر ساخته نمی‌شود — purge صاحب ساختش است.
+        """
+        new_iso = canonical_utc(sort_date, what="sort_date")
+
+        def op(conn: sqlite3.Connection):
+            row = conn.execute(
+                "SELECT last_sort_date FROM tombstones WHERE token = ?", (token,)
+            ).fetchone()
+            if row is None:
+                return None
+            if new_iso <= row["last_sort_date"]:
+                return row["last_sort_date"]
+            conn.execute(
+                "UPDATE tombstones SET last_sort_date = ? WHERE token = ?",
+                (new_iso, token),
+            )
+            return new_iso
 
         return await self._call(op)
 

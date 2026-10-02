@@ -1,7 +1,7 @@
 import argparse
+import asyncio
 import signal
 import sys
-import threading
 
 from top_divar import __version__
 from top_divar.config import (
@@ -10,6 +10,9 @@ from top_divar.config import (
     load_yaml_file,
     validate_config,
 )
+from top_divar.core import PollScheduler, PollingSettings, poll_search
+from top_divar.divar.fetcher import DivarFetcher
+from top_divar.divar.queue import DivarRequestQueue
 from top_divar.shared.logging import get_logger, setup_logging
 from top_divar.storage import DEFAULT_DB_PATH, SqliteRepository, StorageError
 
@@ -40,7 +43,7 @@ def _build_parser() -> argparse.ArgumentParser:
     run_parser = subparsers.add_parser(
         "run",
         parents=[common],
-        help="اجرای سرویس (مرحلهٔ ۲: کانفیگ + پایگاه داده)",
+        help="اجرای سرویس (مرحلهٔ ۴: پایش و تشخیص جدید)",
     )
     run_parser.add_argument(
         "--log-level", default="INFO", help="سطح لاگ (پیش‌فرض: INFO)"
@@ -102,7 +105,22 @@ def cmd_run(args) -> int:
             extra={"fields": {"event": "storage_open_failed"}},
         )
         return 1
-    searches = raw.get("searches", [])
+    searches = [
+        search
+        for search in raw.get("searches", [])
+        if isinstance(search, dict) and search.get("enabled", True)
+    ]
+    settings = PollingSettings.from_config(raw)
+    queue = DivarRequestQueue(
+        search_min_interval=settings.search_min_interval,
+        detail_min_interval=settings.detail_min_interval,
+    )
+    fetcher = DivarFetcher(queue=queue)
+
+    async def _poll(search: dict) -> None:
+        await poll_search(fetcher, repository, search, settings)
+
+    scheduler = PollScheduler(searches, settings, _poll)
     log.info(
         "سرویس راه‌اندازی شد.",
         extra={
@@ -124,15 +142,21 @@ def cmd_run(args) -> int:
         },
     )
     log.info(
-        "پایش دیوار و ارسال در این مرحله فعال نیست (مرحلهٔ ۲ — ذخیره).",
-        extra={"fields": {"event": "phase2_storage"}},
+        "پایش دیوار فعال است (مرحلهٔ ۴ — تشخیص جدید)؛ امتیاز و ارسال هنوز ساخته نشده‌اند.",
+        extra={
+            "fields": {
+                "event": "phase4_detection",
+                "default_interval_seconds": settings.default_interval,
+                "jitter_seconds": settings.jitter,
+                "max_consecutive_errors": settings.max_consecutive_errors,
+                "max_pages_per_poll": settings.max_pages_per_poll,
+                "notify_on_bump": settings.notify_on_bump,
+                "fetch_post_detail": settings.fetch_post_detail,
+            }
+        },
     )
-    stop = threading.Event()
 
-    def _on_stop(signum, frame):
-        stop.set()
-
-    def _on_reload(signum, frame):
+    def _on_reload() -> None:
         _, new_report, new_load_error = _load_and_validate(args.config, args.env)
         if new_load_error is not None:
             log.error(
@@ -143,7 +167,7 @@ def cmd_run(args) -> int:
             return
         if new_report.ok:
             log.info(
-                "کانفیگ با SIGHUP دوباره خوانده و تأیید شد (اجرای زندهٔ تغییرها مال مرحلهٔ ۷ است).",
+                "کانفیگ با SIGHUP دوباره خوانده و تأیید شد (اعمال زندهٔ تغییرها مال مرحلهٔ ۷ است).",
                 extra={"fields": {"event": "config_reloaded"}},
             )
         else:
@@ -154,19 +178,41 @@ def cmd_run(args) -> int:
             for error in new_report.errors:
                 log.error(error.message)
 
-    signal.signal(signal.SIGINT, _on_stop)
-    signal.signal(signal.SIGTERM, _on_stop)
-    if hasattr(signal, "SIGHUP"):
-        signal.signal(signal.SIGHUP, _on_reload)
+    exit_code = 0
+    try:
+        asyncio.run(_run_service(scheduler, log, _on_reload))
+    except Exception as exc:  # noqa: BLE001 - خطای غیرمنتظره باید سرویس را بخواباند
+        log.error(
+            "خطای غیرمنتظره سرویس: %s",
+            exc,
+            extra={"fields": {"event": "service_crashed", "error": str(exc)}},
+        )
+        exit_code = 1
+    finally:
+        repository.close()
     log.info(
-        "در انتظار سیگنال هستیم (SIGHUP = بارگذاری مجدد کانفیگ، SIGINT/SIGTERM = توقف).",
+        "سیگنال توقف دریافت شد — خروج.",
+        extra={"fields": {"event": "service_stopped", "exit_code": exit_code}},
+    )
+    return exit_code
+
+
+async def _run_service(scheduler: PollScheduler, log, on_reload) -> None:
+    stop = asyncio.Event()
+    loop = asyncio.get_running_loop()
+
+    def _request_stop() -> None:
+        stop.set()
+
+    for sig in (signal.SIGINT, signal.SIGTERM):
+        loop.add_signal_handler(sig, _request_stop)
+    if hasattr(signal, "SIGHUP"):
+        loop.add_signal_handler(signal.SIGHUP, on_reload)
+    log.info(
+        "در انتظار سیگنال هستیم (SIGHUP = اعتبارسنجی دوبارهٔ کانفیگ، SIGINT/SIGTERM = توقف).",
         extra={"fields": {"event": "waiting_for_signals"}},
     )
-    while not stop.wait(timeout=3600):
-        pass
-    repository.close()
-    log.info("سیگنال توقف دریافت شد — خروج.", extra={"fields": {"event": "service_stopped"}})
-    return 0
+    await scheduler.run(stop)
 
 
 def main(argv=None) -> int:

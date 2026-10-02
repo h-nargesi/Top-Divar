@@ -111,6 +111,9 @@ DEFAULT_MIN_INTERVAL = "5m"
 DEFAULT_DEFAULT_INTERVAL = "5m"
 DEFAULT_SEARCH_MIN_INTERVAL = "30s"
 DEFAULT_DETAIL_MIN_INTERVAL = "30s"
+DEFAULT_JITTER = "30s"
+DEFAULT_MAX_CONSECUTIVE_ERRORS = 5
+DEFAULT_MAX_PAGES_PER_POLL = 5
 POLLING_RATE_LIMIT_WARN_SECONDS = 5.0
 
 SEARCH_ID_ALLOWED_CHARS = set(
@@ -537,7 +540,7 @@ def _validate_polling(c: _Collector, polling):
     default_interval = _parse_duration_key(
         c, "polling", polling, "default_interval", DEFAULT_DEFAULT_INTERVAL
     )
-    _parse_duration_key(c, "polling", polling, "jitter", "30s")
+    _parse_duration_key(c, "polling", polling, "jitter", DEFAULT_JITTER)
     if min_interval is not None and default_interval is not None:
         if default_interval < min_interval:
             c.error(

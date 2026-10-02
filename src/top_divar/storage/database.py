@@ -90,6 +90,21 @@ MIGRATIONS: list = [
             "CREATE INDEX idx_delivery_status ON delivery (status)",
         ],
     ),
+    (
+        2,
+        [
+            """
+            CREATE TABLE matched_searches (
+                id INTEGER PRIMARY KEY,
+                ad_id INTEGER NOT NULL REFERENCES ads (id) ON DELETE CASCADE,
+                search_id TEXT NOT NULL,
+                first_seen_at TEXT NOT NULL,
+                UNIQUE (ad_id, search_id)
+            )
+            """,
+            "CREATE INDEX idx_matched_searches_search ON matched_searches (search_id)",
+        ],
+    ),
 ]
 
 
