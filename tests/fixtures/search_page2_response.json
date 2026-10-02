@@ -1,0 +1,3068 @@
+{
+ "list_widgets": [
+  {
+   "widget_type": "DIVIDER_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.DividerRowData",
+    "fullwidth": true,
+    "padded": true
+   }
+  },
+  {
+   "widget_type": "SELECTOR_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.SelectorRowData",
+    "title": "آگهی‌های مشابه",
+    "icon": {},
+    "description": "آگهی‌های زیر، نتیجه‌های نزدیک به جستجوی شماست.",
+    "last_notification_date": "0001-01-01T00:00:00Z",
+    "fullwidth": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۷۴متر دو خواب فول امکانات تکواحد تاپ لوکیشن",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gapOqAFe",
+      "web_info": {
+       "title": "۷۴متر دو خواب فول امکانات تکواحد تاپ لوکیشن",
+       "district_persian": "مدائن",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gapOqAFe_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/xk063r5G3uoAY60RcpgqFA/ec5b49bc-0d35-4126-b9ad-15266c8b5571.webp",
+    "bottom_description_text": "REDACTED در مدائن",
+    "middle_description_text": "۲۱,۵۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gapOqAFe"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gapOqAFe",
+           "web_info": {
+            "title": "۷۴متر دو خواب فول امکانات تکواحد تاپ لوکیشن",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gapOqAFe",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gapOqAFe_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gapOqAFe",
+      "index": 0,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T20:03:28.795195Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "سامان شمالی ۹۰متری شیک تکواحدی دوکله فول ۷سال ساخت",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gap6V9xd",
+      "web_info": {
+       "title": "سامان شمالی ۹۰متری شیک تکواحدی دوکله فول ۷سال ساخت",
+       "district_persian": "هفت حوض",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gap6V9xd_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/5_Q_fsi2M27QTsyx6xSp8Q/d44ae7a0-c85e-4aa7-b633-2138a514684f.webp",
+    "bottom_description_text": "REDACTED در هفت حوض",
+    "middle_description_text": "۲۵,۲۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 17,
+    "image_top_left_tag": {
+     "text": "۱۷",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gap6V9xd"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gap6V9xd",
+           "web_info": {
+            "title": "سامان شمالی ۹۰متری شیک تکواحدی دوکله فول ۷سال ساخت",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gap6V9xd",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gap6V9xd_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gap6V9xd",
+      "index": 1,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "max": 900000000,
+         "min": 256000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "max": 15,
+         "min": 0
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T15:06:55.745259Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "100متر   سالن پرده خور     فول    دردشت",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gapKlv_g",
+      "web_info": {
+       "title": "100متر   سالن پرده خور     فول    دردشت",
+       "district_persian": "دردشت",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gapKlv_g_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/PP8qcdCUElG7NkHEFPJ98A/cf4f3613-9f38-49fc-84b9-7e49bdfa8ce3.webp",
+    "bottom_description_text": "REDACTED در دردشت",
+    "middle_description_text": "۲۸,۴۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 2,
+    "image_top_left_tag": {
+     "text": "۲",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gapKlv_g"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gapKlv_g",
+           "web_info": {
+            "title": "100متر   سالن پرده خور     فول    دردشت",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gapKlv_g",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gapKlv_g_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gapKlv_g",
+      "index": 2,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "min": 40,
+         "max": 140
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T14:23:52.612875Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۱۱۳متر۲خ فول/سالن بزرگ/دسترسی ویژه/هلال احمر نارمک",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaKu5_tB",
+      "web_info": {
+       "title": "۱۱۳متر۲خ فول/سالن بزرگ/دسترسی ویژه/هلال احمر نارمک",
+       "district_persian": "هفت حوض",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gaKu5_tB_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/jH2gDF0kyZ2GAwcNL48EKw/3d8ed800-d16d-4cb4-98e4-c67b38cf96dd.webp",
+    "bottom_description_text": "REDACTED در هفت حوض",
+    "red_text": "نردبان شده",
+    "middle_description_text": "۳۱,۸۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 18,
+    "image_top_left_tag": {
+     "text": "۱۸",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gaKu5_tB"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gaKu5_tB",
+           "web_info": {
+            "title": "۱۱۳متر۲خ فول/سالن بزرگ/دسترسی ویژه/هلال احمر نارمک",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gaKu5_tB",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gaKu5_tB_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaKu5_tB",
+      "index": 3,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T14:13:12.232121Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۱۱۸ متر ۲ خواب ، نبش میدان",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gala1vuI",
+      "web_info": {
+       "title": "۱۱۸ متر ۲ خواب ، نبش میدان",
+       "district_persian": "هفت حوض",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gala1vuI_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/fLOj-vDf9CBcbpNySOzgxA/0c6fa2b2-1e71-483c-8553-7087c971b324.webp",
+    "bottom_description_text": "REDACTED در هفت حوض",
+    "red_text": "نردبان شده",
+    "middle_description_text": "۴۱,۰۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gala1vuI"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gala1vuI",
+           "web_info": {
+            "title": "۱۱۸ متر ۲ خواب ، نبش میدان",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gala1vuI",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gala1vuI_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gala1vuI",
+      "index": 4,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T14:09:56.688075Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "فروش اپارتمان تک خوابه ، ۶۵ متری ، ثقفی",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gagmw_S-",
+      "web_info": {
+       "title": "فروش اپارتمان تک خوابه ، ۶۵ متری ، ثقفی",
+       "district_persian": "درختی",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gagmw_S-_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/kFyk7Rb8CY2niwYHqdnsQQ/24c57749-586d-4709-914a-b4d7327c8a33.webp",
+    "bottom_description_text": "REDACTED در درختی",
+    "red_text": "نردبان شده",
+    "middle_description_text": "۳۰,۵۵۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 9,
+    "image_top_left_tag": {
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/videocam.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/videocam.png",
+      "icon_name": "VIDEOCAM",
+      "icon_color": "WHITE_PRIMARY"
+     }
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gagmw_S-"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gagmw_S-",
+           "web_info": {
+            "title": "فروش اپارتمان تک خوابه ، ۶۵ متری ، ثقفی",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gagmw_S-",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gagmw_S-_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gagmw_S-",
+      "index": 5,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "min": 40,
+         "max": 140
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T13:45:36.312194Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "آپارتمان 48 متری  یک خوابه فول تک واحدی",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "galCSjaC",
+      "web_info": {
+       "title": "آپارتمان 48 متری  یک خوابه فول تک واحدی",
+       "district_persian": "دردشت",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_galCSjaC_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/WFMb4cR0sC2yNyOfzePd3w/2d2b513c-b247-4e0b-b30e-acb4101dee25.webp",
+    "bottom_description_text": "REDACTED در دردشت",
+    "red_text": "نردبان شده",
+    "middle_description_text": "۱۲,۷۹۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "galCSjaC"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "galCSjaC",
+           "web_info": {
+            "title": "آپارتمان 48 متری  یک خوابه فول تک واحدی",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "galCSjaC",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_galCSjaC_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "galCSjaC",
+      "index": 6,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "price_per_square": {
+         "max": 900000000,
+         "min": 256000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T09:18:16.012936Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۸۳ متر ۲خواب شخصی ساز سال ساخت ۱۳۹۹ فروشنده تک برگ",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gapOQBF3",
+      "web_info": {
+       "title": "۸۳ متر ۲خواب شخصی ساز سال ساخت ۱۳۹۹ فروشنده تک برگ",
+       "district_persian": "گلستان (شهرک راه آهن)",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gapOQBF3_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/mw0bYvoPH3j9mEZLStFduA/7267a354-e97c-47b0-a6c7-068bb24ee0e7.webp",
+    "bottom_description_text": "REDACTED در گلستان (شهرک راه آهن)",
+    "middle_description_text": "۲۵,۵۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 2,
+    "image_top_left_tag": {
+     "text": "۲",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gapOQBF3"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gapOQBF3",
+           "web_info": {
+            "title": "۸۳ متر ۲خواب شخصی ساز سال ساخت ۱۳۹۹ فروشنده تک برگ",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gapOQBF3",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gapOQBF3_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gapOQBF3",
+      "index": 7,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "min": 40,
+         "max": 140
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T08:34:26.721035Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "آپارتمان ۱۰۴متر بلوار اقاقیا سند تک برگ چیتگر",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gapGwthB",
+      "web_info": {
+       "title": "آپارتمان ۱۰۴متر بلوار اقاقیا سند تک برگ چیتگر",
+       "district_persian": "گلستان (شهرک راه آهن)",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gapGwthB_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/m6xoLuxvwTcIOVDyfQJ-TA/df457caa-4361-413b-9202-d36a2fc9bc39.webp",
+    "bottom_description_text": "REDACTED در گلستان (شهرک راه آهن)",
+    "middle_description_text": "۲۸,۷۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 6,
+    "image_top_left_tag": {
+     "text": "۶",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gapGwthB"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gapGwthB",
+           "web_info": {
+            "title": "آپارتمان ۱۰۴متر بلوار اقاقیا سند تک برگ چیتگر",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gapGwthB",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gapGwthB_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gapGwthB",
+      "index": 8,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "min": 40,
+         "max": 140
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T08:33:18.306226Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۸۰ متر سند تک برگ",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaYCIV74",
+      "web_info": {
+       "title": "۸۰ متر سند تک برگ",
+       "district_persian": "گلستان (شهرک راه آهن)",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gaYCIV74_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/eoT82rNCkQFhYshu-rQaPQ/7e6c55c2-7b9e-4817-8993-2de3f656cc0c.webp",
+    "bottom_description_text": "REDACTED در گلستان (شهرک راه آهن)",
+    "red_text": "نردبان شده",
+    "middle_description_text": "۲۲,۰۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 3,
+    "image_top_left_tag": {
+     "text": "۳",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gaYCIV74"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gaYCIV74",
+           "web_info": {
+            "title": "۸۰ متر سند تک برگ",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gaYCIV74",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gaYCIV74_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaYCIV74",
+      "index": 9,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "max": 6,
+         "min": -1
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T07:45:20.089850Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۱۲۰متر تکواحدی فول امکانات/تک برگ شهرک راه آهن",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaoy-XDp",
+      "web_info": {
+       "title": "۱۲۰متر تکواحدی فول امکانات/تک برگ شهرک راه آهن",
+       "district_persian": "گلستان (شهرک راه آهن)",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gaoy-XDp_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/4ZgpyK_967CsM27ZxBfc6Q/ddf32f50-2968-4d03-b0d4-1457cd847838.webp",
+    "bottom_description_text": "REDACTED در گلستان (شهرک راه آهن)",
+    "middle_description_text": "۳۳,۰۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 2,
+    "image_top_left_tag": {
+     "text": "۲",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gaoy-XDp"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gaoy-XDp",
+           "web_info": {
+            "title": "۱۲۰متر تکواحدی فول امکانات/تک برگ شهرک راه آهن",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gaoy-XDp",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gaoy-XDp_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaoy-XDp",
+      "index": 10,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "max": 15,
+         "min": 0
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "max": 60000000000,
+         "min": 11000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "max": 6,
+         "min": -1
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T06:57:47.172788Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۱۰۵ متر شمال کاج روبه افتاب ۸ سال ساخت",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gaZayYsS",
+      "web_info": {
+       "title": "۱۰۵ متر شمال کاج روبه افتاب ۸ سال ساخت",
+       "district_persian": "سعادت‌آباد",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gaZayYsS_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/ji9Pf3NpK_DY2z-Ac1wppg/e3fa3204-dd6d-4ed0-aae4-1d20d0ffa036.webp",
+    "bottom_description_text": "REDACTED در سعادت‌آباد",
+    "red_text": "نردبان شده",
+    "middle_description_text": "۶۳,۰۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 1,
+    "image_top_left_tag": {
+     "text": "۱",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gaZayYsS"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gaZayYsS",
+           "web_info": {
+            "title": "۱۰۵ متر شمال کاج روبه افتاب ۸ سال ساخت",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gaZayYsS",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gaZayYsS_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gaZayYsS",
+      "index": 11,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "min": 256000000,
+         "max": 900000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T06:11:36.764532Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۴۸متر ۱خ فول امکانات ۹ساله/سوپر لاکچری/کرمان جنوبی",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gamaEAGF",
+      "web_info": {
+       "title": "۴۸متر ۱خ فول امکانات ۹ساله/سوپر لاکچری/کرمان جنوبی",
+       "district_persian": "هفت حوض",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gamaEAGF_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/XXpimQmGLmI9NJuRrSrlVQ/7343148d-432f-417f-b93a-f103e2d0072b.webp",
+    "bottom_description_text": "REDACTED در هفت حوض",
+    "middle_description_text": "۱۲,۵۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 12,
+    "image_top_left_tag": {
+     "text": "۱۲",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gamaEAGF"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gamaEAGF",
+           "web_info": {
+            "title": "۴۸متر ۱خ فول امکانات ۹ساله/سوپر لاکچری/کرمان جنوبی",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gamaEAGF",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gamaEAGF_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gamaEAGF",
+      "index": 12,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "parking": true,
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "max": 900000000,
+         "min": 256000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        }
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-15T05:17:19.998244Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  },
+  {
+   "widget_type": "POST_ROW",
+   "data": {
+    "@type": "type.googleapis.com/widgets.PostRowData",
+    "title": "۱۲۰متر ۳خواب نوساز/ ۲واحدی/ ۲پارکینگ/ نورگیر جنوبی",
+    "action": {
+     "type": "VIEW_POST",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.ViewPostPayload",
+      "token": "gajKAphW",
+      "web_info": {
+       "title": "۱۲۰متر ۳خواب نوساز/ ۲واحدی/ ۲پارکینگ/ نورگیر جنوبی",
+       "district_persian": "آسمان",
+       "city_persian": "تهران"
+      },
+      "ad_instance_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gajKAphW_N"
+     }
+    },
+    "image_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/wjB1Z82NV7udLJ1jS0yk2A/a4787a22-e6d3-4189-992b-194d9c3014e1.webp",
+    "bottom_description_text": "REDACTED در آسمان",
+    "red_text": "نردبان شده",
+    "middle_description_text": "۶۳,۰۰۰,۰۰۰,۰۰۰ تومان",
+    "has_divider": true,
+    "image_count": 9,
+    "image_top_left_tag": {
+     "text": "۹",
+     "icon": {
+      "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/camera.png",
+      "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/camera.png",
+      "icon_name": "CAMERA",
+      "icon_color": "WHITE_PRIMARY"
+     },
+     "is_icon_left": true
+    },
+    "long_press_action": {
+     "type": "LOAD_MENU",
+     "payload": {
+      "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+      "menu": {
+       "items": [
+        {
+         "text": "نشان کردن",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/bookmark_border.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/bookmark_border.png",
+          "icon_name": "BOOKMARK_BORDER",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "MAKE_NETWORK_CALL",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+           "grpc_request_path": "/yaad_v2.YaadV2/SetBookmarkV2",
+           "rest_request_path": "/yaad/bookmark-v2",
+           "request_data": {
+            "@type": "type.googleapis.com/yaad_v2.SetBookmarkV2Request.RequestData",
+            "token": "gajKAphW"
+           },
+           "needs_auth": true
+          }
+         },
+         "alignment": "RIGHT"
+        },
+        {
+         "text": "باز کردن در صفحه جدید",
+         "icon": {
+          "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/add_circle_outline.png",
+          "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/add_circle_outline.png",
+          "icon_name": "ADD_CIRCLE_OUTLINE",
+          "icon_color": "ICON_SECONDARY"
+         },
+         "action": {
+          "type": "VIEW_POST",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.ViewPostPayload",
+           "token": "gajKAphW",
+           "web_info": {
+            "title": "۱۲۰متر ۳خواب نوساز/ ۲واحدی/ ۲پارکینگ/ نورگیر جنوبی",
+            "open_new_tab": true
+           }
+          }
+         },
+         "alignment": "RIGHT"
+        }
+       ],
+       "banner": {}
+      },
+      "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+     }
+    },
+    "token": "gajKAphW",
+    "should_indicate_seen_status": true,
+    "tracker_session_id": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8_gajKAphW_N",
+    "layout_type": "GRID_ITEM"
+   },
+   "action_log": {
+    "server_side_info": {
+     "info": {
+      "@type": "type.googleapis.com/action_log.PostItemInfo",
+      "post_token": "gajKAphW",
+      "index": 13,
+      "post_type": "SEARCH",
+      "list_type": "PAGE",
+      "source_page": "POST_LIST_PAGE",
+      "extra_data": {
+       "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+       "jli": {
+        "sort": {
+         "value": "sort_date"
+        },
+        "rebuilt": true,
+        "rooms": {
+         "value": [
+          "یک",
+          "دو",
+          "سه",
+          "چهار"
+         ]
+        },
+        "elevator": true,
+        "districts": {
+         "vacancies": [
+          "198",
+          "399",
+          "654",
+          "75",
+          "907",
+          "929"
+         ]
+        },
+        "price_per_square": {
+         "max": 900000000,
+         "min": 256000000
+        },
+        "warehouse": true,
+        "building-age": {
+         "min": 0,
+         "max": 15
+        },
+        "recent_ads": {
+         "value": "1d"
+        },
+        "cities": [
+         "1"
+        ],
+        "price": {
+         "min": 11000000000,
+         "max": 60000000000
+        },
+        "places": {
+         "value": [
+          "1"
+         ]
+        },
+        "size": {
+         "max": 140,
+         "min": 40
+        },
+        "floor": {
+         "min": -1,
+         "max": 6
+        },
+        "category": {
+         "value": "apartment-sell"
+        },
+        "parking": true
+       },
+       "last_post_sort_date": "1789460733266302",
+       "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+       "search_data": {
+        "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+        "sort": "sort_date",
+        "cities": [
+         "1"
+        ],
+        "query_input_type": "TEXT",
+        "user_selected_location": {
+         "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+         "places": [
+          {
+           "place_id": "1"
+          }
+         ]
+        }
+       },
+       "page": 1
+      },
+      "sort_date": "2026-09-14T20:49:10.418023Z"
+     },
+     "item_type": {
+      "type": "POST_ITEM"
+     }
+    },
+    "enabled": true
+   }
+  }
+ ],
+ "action_log": {
+  "server_side_info": {
+   "info": {
+    "@type": "type.googleapis.com/action_log.PostListLoadPageInfo",
+    "cities": [
+     "1"
+    ],
+    "current_tab": "default",
+    "search_data": {
+     "form_data_json": "{\"data\":{\"building-age\":{\"number_range\":{\"minimum\":\"0\",\"maximum\":\"15\",\"value\":{\"minimum\":\"0\",\"maximum\":\"15\"}}},\"category\":{\"str\":{\"value\":\"apartment-sell\"}},\"districts\":{\"repeated_string\":{\"value\":[\"198\",\"399\",\"654\",\"75\",\"907\",\"929\"]}},\"elevator\":{\"boolean\":{\"value\":true}},\"floor\":{\"number_range\":{\"minimum\":\"-1\",\"maximum\":\"6\",\"value\":{\"minimum\":\"-1\",\"maximum\":\"6\"}}},\"parking\":{\"boolean\":{\"value\":true}},\"price\":{\"number_range\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\",\"value\":{\"minimum\":\"11000000000\",\"maximum\":\"60000000000\"}}},\"price_per_square\":{\"number_range\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\",\"value\":{\"minimum\":\"256000000\",\"maximum\":\"900000000\"}}},\"rebuilt\":{\"boolean\":{\"value\":true}},\"recent_ads\":{\"str\":{\"value\":\"1d\"}},\"rooms\":{\"repeated_string\":{\"value\":[\"یک\",\"دو\",\"سه\",\"چهار\"]}},\"size\":{\"number_range\":{\"minimum\":\"40\",\"maximum\":\"140\",\"value\":{\"minimum\":\"40\",\"maximum\":\"140\"}}},\"sort\":{\"str\":{\"value\":\"sort_date\"}},\"warehouse\":{\"boolean\":{\"value\":true}}}}",
+     "sort": "sort_date",
+     "cities": [
+      "1"
+     ],
+     "query_input_type": "TEXT",
+     "user_selected_location": {
+      "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+      "places": [
+       {
+        "place_id": "1"
+       }
+      ]
+     }
+    },
+    "tokens": [
+     "gapOqAFe",
+     "gap6V9xd",
+     "gapKlv_g",
+     "gaKu5_tB",
+     "gala1vuI",
+     "gagmw_S-",
+     "galCSjaC",
+     "gapOQBF3",
+     "gapGwthB",
+     "gaYCIV74",
+     "gaoy-XDp",
+     "gaZayYsS",
+     "gamaEAGF",
+     "gajKAphW"
+    ],
+    "page": 1,
+    "pelle": {
+     "elastic": {}
+    },
+    "last_post_date_epoch": "-62135596800000000",
+    "search_id": "2e7fcf54c0dd6555f96559e5454afc49",
+    "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+    "source_view": "MAP_DISCOVERY_MAP",
+    "posts_metadata": [
+     {
+      "token": "gapOqAFe",
+      "sort_date": "1789502608795195",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":1418}"
+     },
+     {
+      "token": "gap6V9xd",
+      "sort_date": "1789484815745259",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":19211}"
+     },
+     {
+      "token": "gapKlv_g",
+      "sort_date": "1789482232612875",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":21794}"
+     },
+     {
+      "token": "gaKu5_tB",
+      "sort_date": "1789481592232121",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":22434}"
+     },
+     {
+      "token": "gala1vuI",
+      "sort_date": "1789481396688075",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":22630}"
+     },
+     {
+      "token": "gagmw_S-",
+      "sort_date": "1789479936312194",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":24090}"
+     },
+     {
+      "token": "galCSjaC",
+      "sort_date": "1789463896012936",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":40130}"
+     },
+     {
+      "token": "gapOQBF3",
+      "sort_date": "1789461266721035",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":42760}"
+     },
+     {
+      "token": "gapGwthB",
+      "sort_date": "1789461198306226",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":42828}"
+     },
+     {
+      "token": "gaYCIV74",
+      "sort_date": "1789458320089850",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":45706}"
+     },
+     {
+      "token": "gaoy-XDp",
+      "sort_date": "1789455467172788",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":48559}"
+     },
+     {
+      "token": "gaZayYsS",
+      "sort_date": "1789452696764532",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":51330}"
+     },
+     {
+      "token": "gamaEAGF",
+      "sort_date": "1789449439998244",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":54586}"
+     },
+     {
+      "token": "gajKAphW",
+      "sort_date": "1789418950418023",
+      "source": "f_relax",
+      "extra_info": "{\"category\":\"apartment-sell\",\"highlight\":null,\"matched_rules\":[],\"is_enriched_pipeline_consumed\":true,\"enriched_pipeline_name\":\"-\",\"freshness\":85076}"
+     }
+    ],
+    "jli": {
+     "recent_ads": {
+      "value": "1d"
+     },
+     "cities": [
+      "1"
+     ],
+     "price": {
+      "min": 11000000000,
+      "max": 60000000000
+     },
+     "places": {
+      "value": [
+       "1"
+      ]
+     },
+     "size": {
+      "max": 140,
+      "min": 40
+     },
+     "floor": {
+      "min": -1,
+      "max": 6
+     },
+     "category": {
+      "value": "apartment-sell"
+     },
+     "parking": true,
+     "sort": {
+      "value": "sort_date"
+     },
+     "rebuilt": true,
+     "rooms": {
+      "value": [
+       "یک",
+       "دو",
+       "سه",
+       "چهار"
+      ]
+     },
+     "elevator": true,
+     "districts": {
+      "vacancies": [
+       "198",
+       "399",
+       "654",
+       "75",
+       "907",
+       "929"
+      ]
+     },
+     "price_per_square": {
+      "min": 256000000,
+      "max": 900000000
+     },
+     "warehouse": true,
+     "building-age": {
+      "min": 0,
+      "max": 15
+     }
+    },
+    "search_layer": "fuzzy_filter",
+    "widget_order": [
+     {
+      "type": "SEARCH_RESULT",
+      "track_id": "gapOqAFe"
+     },
+     {
+      "index": 1,
+      "type": "SEARCH_RESULT",
+      "track_id": "gap6V9xd"
+     },
+     {
+      "index": 2,
+      "type": "SEARCH_RESULT",
+      "track_id": "gapKlv_g"
+     },
+     {
+      "index": 3,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaKu5_tB"
+     },
+     {
+      "index": 4,
+      "type": "SEARCH_RESULT",
+      "track_id": "gala1vuI"
+     },
+     {
+      "index": 5,
+      "type": "SEARCH_RESULT",
+      "track_id": "gagmw_S-"
+     },
+     {
+      "index": 6,
+      "type": "SEARCH_RESULT",
+      "track_id": "galCSjaC"
+     },
+     {
+      "index": 7,
+      "type": "SEARCH_RESULT",
+      "track_id": "gapOQBF3"
+     },
+     {
+      "index": 8,
+      "type": "SEARCH_RESULT",
+      "track_id": "gapGwthB"
+     },
+     {
+      "index": 9,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaYCIV74"
+     },
+     {
+      "index": 10,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaoy-XDp"
+     },
+     {
+      "index": 11,
+      "type": "SEARCH_RESULT",
+      "track_id": "gaZayYsS"
+     },
+     {
+      "index": 12,
+      "type": "SEARCH_RESULT",
+      "track_id": "gamaEAGF"
+     },
+     {
+      "index": 13,
+      "type": "SEARCH_RESULT",
+      "track_id": "gajKAphW"
+     }
+    ],
+    "list_level_extra_info": "{}",
+    "user_selected_location": {
+     "@type": "type.googleapis.com/widgets.UserSelectedLocation",
+     "places": [
+      {
+       "place_id": "1"
+      }
+     ]
+    }
+   },
+   "item_type": {
+    "type": "POST_LIST_LOAD_PAGE"
+   }
+  },
+  "enabled": true
+ },
+ "search_bar": {},
+ "pagination": {
+  "data": {
+   "@type": "type.googleapis.com/post_list.PaginationData",
+   "last_post_date": "0001-01-01T00:00:00Z",
+   "page": 2,
+   "layer_page": 1,
+   "layer_id": 36,
+   "search_uid": "a1c8dea0-1fc1-472d-81b2-7da8d5ac0dc8",
+   "cumulative_widgets_count": 22,
+   "viewed_tokens": "H4sIAAAAAAAE/xTKy26DMBCF4ReaLKKmtyVx4yhyK0BGULpBpyodwNCaO7x9NLtP5/wMj6P+cMTwKnVJJrDJy2kUqMTZXpDV0bwR48+sro6I8Vt+X8pBLhVvw7sg7ANdCp7S1+1HYNqlYGKY+bGYzsRocVzmGzG4Wwt7kEXZBkriMD7rB8F1nSqJc3VLn0/E+N8Pn2+eGF/Y89ESo8MluGpiNCbwVXYPAAD//5xebh3FAAAA",
+   "search_bookmark_info": {
+    "search_hash": "5793aa1755524ef9cf5a79b74a4fe85f",
+    "bookmark_state": {},
+    "alert_state": {}
+   },
+   "first_page_viewed_at": "2026-09-15T20:27:06.543881332Z",
+   "viewed_rows": [
+    {
+     "type": "VIEWED_ROW_SIMILAR_RESULTS_DIVIDER"
+    }
+   ],
+   "filters_hash": "Ln/PVMDdZVX5ZVnlRUr8SQ=="
+  }
+ },
+ "search_id": "2e7fcf54c0dd6555f96559e5454afc49",
+ "show_no_search_result_notice": true
+}

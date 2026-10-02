@@ -1,0 +1,888 @@
+{
+ "sections": [
+  {
+   "section_name": "BREADCRUMB",
+   "widgets": [
+    {
+     "widget_type": "BREADCRUMB",
+     "data": {
+      "@type": "type.googleapis.com/widgets.BreadcrumbData",
+      "parent_items": [
+       {
+        "title": "املاک",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "real-estate"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "فروش مسکونی",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "residential-sell"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       },
+       {
+        "title": "فروش آپارتمان",
+        "action": {
+         "type": "OPEN_POSTLIST_PAGE_GRPC",
+         "payload": {
+          "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+          "search_data": {
+           "form_data": {
+            "data": {
+             "category": {
+              "str": {
+               "value": "apartment-sell"
+              }
+             }
+            }
+           }
+          },
+          "source_view": "CATEGORY_BREAD_CRUMB",
+          "source_view_str": "CATEGORY_BREAD_CRUMB"
+         }
+        }
+       }
+      ],
+      "current_page_title": "۹۷ متر ۲ خواب دونبش // دید ابدی",
+      "padded": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "TITLE",
+   "widgets": [
+    {
+     "widget_type": "LEGEND_TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.LegendTitleRowData",
+      "title": "۹۷ متر ۲ خواب دونبش // دید ابدی",
+      "high_level_heading": true,
+      "padding": "NO_PADDING"
+     }
+    },
+    {
+     "widget_type": "EXPANDABLE_SECTION",
+     "data": {
+      "@type": "type.googleapis.com/widgets.ExpandableSectionData",
+      "widget_list": [
+       {
+        "widget_type": "DESCRIPTION_ROW",
+        "data": {
+         "@type": "type.googleapis.com/widgets.DescriptionRowData",
+         "text": "انتشار آگهی: ۷ مرداد ۱۴۰۵، ۱۵:۴۳\nآخرین نردبان: ۲۱ شهریور ۱۴۰۵، ۱۰:۲۷\nآخرین به‌روز‌رسانی: ۲۵ شهریور ۱۴۰۵، ۱۱:۰۷",
+         "is_primary": true,
+         "small": true,
+         "text_alignment": "RIGHT"
+        }
+       }
+      ],
+      "title": "ماه پیش در تهران، یوسف‌آباد، خ سی و هشتم فضل‌الهی",
+      "icon": {}
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "زنگ خطرهای قبل از معامله",
+      "action": {
+       "type": "OPEN_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPagePayload",
+        "request_http_method": "POST",
+        "request_data": {
+         "@type": "type.googleapis.com/post_api_v2.GetFraudAlertPageRequest.Data",
+         "category": "apartment-sell"
+        },
+        "specification": {
+         "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification",
+         "navigation_button": "BACK"
+        },
+        "is_modal": true,
+        "rest_request_path": "/v8/postview/fraud-alert",
+        "grpc_request_path": "/post_api_v2.PostApi/GetFraudAlertPage"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/warning.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/warning.png",
+       "icon_name": "WARNING",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.PostWarningInfo",
+        "post_token": "gap5-Twe"
+       },
+       "item_type": {
+        "type": "POST_WARNING"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "DESCRIPTION",
+   "widgets": [
+    {
+     "widget_type": "TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.TitleRowData",
+      "text": "توضیحات",
+      "text_color": "TEXT_PRIMARY",
+      "text_type": "SECONDARY"
+     }
+    },
+    {
+     "widget_type": "DESCRIPTION_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.DescriptionRowData",
+      "text": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، REDACTED\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
+      "is_primary": true,
+      "text_alignment": "RIGHT"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "IMAGE",
+   "widgets": [
+    {
+     "widget_type": "IMAGE_CAROUSEL",
+     "data": {
+      "@type": "type.googleapis.com/widgets.ImageCarouselData",
+      "items": [
+       {
+        "image": {
+         "url": "https://postimage01.divarcdn.com/static/photo/neda/webp_post/ctqDuy-S76vGZAxvffrTCg/43cff8b2-eb49-4012-8e90-3f565fc0ef29.webp",
+         "alt": "۹۷ متر ۲ خواب دونبش // دید ابدی|فروش آپارتمان|تهران, یوسف‌آباد|دیوار",
+         "thumbnail_url": "https://postimage01.divarcdn.com/static/photo/neda/webp_thumbnail/uuK5NfzXt4Aa6ExBzNNOUg/43cff8b2-eb49-4012-8e90-3f565fc0ef29.webp"
+        }
+       }
+      ],
+      "image_aspect_ratio": {
+       "dynamic_aspect_ratio": {
+        "height": 3,
+        "width": 4
+       }
+      },
+      "has_preview": true,
+      "show_tooltip": true,
+      "tooltip_data": {
+       "icon": {
+        "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/white_primary/v1/fullscreen.png",
+        "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/white_primary/v1/fullscreen.png",
+        "icon_name": "FULLSCREEN",
+        "icon_color": "WHITE_PRIMARY"
+       },
+       "text": "عکس‌ها: تزئینی"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "LIST_DATA",
+   "widgets": [
+    {
+     "widget_type": "GROUP_INFO_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.GroupInfoRow",
+      "items": [
+       {
+        "title": "متراژ",
+        "value": "۹۷"
+       },
+       {
+        "title": "ساخت",
+        "value": "۱۴۰۳"
+       },
+       {
+        "title": "اتاق",
+        "value": "۲"
+       }
+      ],
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "تصویر‌ها برای همین ملک است؟",
+      "value": "خیر",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "قیمت کل",
+      "value": "‏۴۸,۵۰۰,۰۰۰,۰۰۰ تومان",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "قیمت هر متر",
+      "value": "‏۵۰۰,۰۰۰,۰۰۰ تومان",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "UNEXPANDABLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.UnexpandableRowData",
+      "title": "طبقه",
+      "value": "۵",
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "SECTION_TITLE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SectionTitleRowData",
+      "title": "ویژگی‌ها و امکانات",
+      "title_color": "TEXT_PRIMARY",
+      "padding": "ALT"
+     }
+    },
+    {
+     "widget_type": "GROUP_FEATURE_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.GroupFeatureRow",
+      "items": [
+       {
+        "title": "آسانسور",
+        "icon": {
+         "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/elevator.png",
+         "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/elevator.png",
+         "icon_name": "ELEVATOR",
+         "icon_color": "ICON_SECONDARY"
+        },
+        "available": true
+       },
+       {
+        "title": "پارکینگ",
+        "icon": {
+         "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/parking.png",
+         "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/parking.png",
+         "icon_name": "PARKING",
+         "icon_color": "ICON_SECONDARY"
+        },
+        "available": true
+       },
+       {
+        "title": "انباری",
+        "icon": {
+         "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/cabinet.png",
+         "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/cabinet.png",
+         "icon_name": "CABINET",
+         "icon_color": "ICON_SECONDARY"
+        },
+        "available": true
+       }
+      ],
+      "has_divider": true
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "سایر ویژگی‌ها و امکانات",
+      "action": {
+       "type": "LOAD_MODAL_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.LoadModalPagePayload",
+        "modal_page": {
+         "title": "ویژگی‌ها و امکانات",
+         "widget_list": [
+          {
+           "widget_type": "TITLE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.TitleRowData",
+            "text": "امکانات",
+            "has_divider": true,
+            "text_color": "TEXT_PRIMARY"
+           }
+          },
+          {
+           "widget_type": "FEATURE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.FeatureRowData",
+            "title": "آسانسور",
+            "has_divider": true,
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/elevator.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/elevator.png",
+             "icon_name": "ELEVATOR",
+             "icon_color": "ICON_SECONDARY"
+            }
+           }
+          },
+          {
+           "widget_type": "FEATURE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.FeatureRowData",
+            "title": "پارکینگ",
+            "has_divider": true,
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/parking.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/parking.png",
+             "icon_name": "PARKING",
+             "icon_color": "ICON_SECONDARY"
+            }
+           }
+          },
+          {
+           "widget_type": "FEATURE_ROW",
+           "data": {
+            "@type": "type.googleapis.com/widgets.FeatureRowData",
+            "title": "انباری",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/cabinet.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/cabinet.png",
+             "icon_name": "CABINET",
+             "icon_color": "ICON_SECONDARY"
+            }
+           }
+          }
+         ]
+        }
+       }
+      },
+      "has_divider": true,
+      "icon": {},
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z",
+      "fullwidth": true
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.ViewPostFeaturesInfo",
+        "post_token": "gap5-Twe"
+       },
+       "item_type": {
+        "type": "VIEW_POST_FEATURES"
+       }
+      },
+      "enabled": true
+     }
+    },
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "بررسی و کارشناسی",
+      "action": {
+       "type": "OPEN_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenPagePayload",
+        "request_http_method": "POST",
+        "request_data": {
+         "@type": "type.googleapis.com/service_providers.GetServiceProvidersPageRequest.RequestData",
+         "source_v2": "DEMAND_POST",
+         "filter": {
+          "service_types": [
+           "REPORT_INSPECTION"
+          ],
+          "city_id": 1,
+          "category": "apartment-sell",
+          "post_token": "gap5-Twe",
+          "touchpoint": "DEMAND_POST"
+         },
+         "action_data_builder": {
+          "conversation_id": "gap5-Twe",
+          "post_token": "gap5-Twe",
+          "touchpoint": "DEMAND_POST",
+          "source": "DEMAND_POST",
+          "lead_source": "DEMAND"
+         },
+         "display_data": {
+          "page_title": "بررسی و کارشناسی"
+         },
+         "trace_id": "cf05eb41-da02-4d49-a89a-9fbe589bf4de",
+         "source": "DEMAND_POST",
+         "lead_source": "DEMAND"
+        },
+        "specification": {
+         "@type": "type.googleapis.com/widgets.OpenPagePayload.SimplePageSpecification"
+        },
+        "is_modal": true,
+        "rest_request_path": "/v8/open-platform/service-providers",
+        "grpc_request_path": "/service_providers.ServiceProviders/GetServiceProvidersPage"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/article-magnifier.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/article-magnifier.png",
+       "icon_name": "ARTICLE_MAGNIFIER",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "has_arrow": true,
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "TAGS",
+   "widgets": [
+    {
+     "widget_type": "WRAPPER_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.WrapperRowData",
+      "chip_list": {
+       "chips": [
+        {
+         "text": "فروش آپارتمان",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_POSTLIST_PAGE_GRPC",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+           "search_data": {
+            "form_data": {
+             "data": {
+              "category": {
+               "str": {
+                "value": "apartment-sell"
+               }
+              }
+             }
+            }
+           },
+           "source_view": "CATEGORY_BREAD_CRUMB",
+           "source_view_str": "CATEGORY_BREAD_CRUMB"
+          }
+         }
+        },
+        {
+         "text": "فروش آپارتمان در یوسف‌آباد",
+         "type": "ACTION",
+         "action": {
+          "type": "OPEN_POSTLIST_PAGE_GRPC",
+          "payload": {
+           "@type": "type.googleapis.com/widgets.OpenPostListPageGRPCPayload",
+           "search_data": {
+            "form_data": {
+             "data": {
+              "category": {
+               "str": {
+                "value": "apartment-sell"
+               }
+              },
+              "districts": {
+               "repeated_string": {
+                "value": [
+                 "90"
+                ]
+               }
+              }
+             }
+            }
+           },
+           "source_view": "CATEGORY_BREAD_CRUMB",
+           "source_view_str": "CATEGORY_BREAD_CRUMB"
+          }
+         }
+        }
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "MAP",
+   "widgets": [
+    {
+     "widget_type": "MAP_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.MapRowData",
+      "location": {
+       "type": "FUZZY",
+       "fuzzy_data": {
+        "point": {
+         "latitude": 35.734610425177365,
+         "longitude": 51.40530956635603
+        },
+        "radius": 500
+       }
+      },
+      "image_url": "https://mapimage.divarcdn.com/v8/mapimage?encrypted_data=MTIzNDU2Nzg5MTIzXL_Y8SdZyazuQp-XOg7PaPpL736MLc2ODD3PkY6uBOaYTw==&is_nearby=true"
+     },
+     "action_log": {
+      "server_side_info": {
+       "info": {
+        "@type": "type.googleapis.com/action_log.MapInfo",
+        "post_token": "gap5-Twe"
+       },
+       "item_type": {
+        "type": "MAP"
+       }
+      },
+      "enabled": true
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "NOTE",
+   "widgets": [
+    {
+     "widget_type": "NOTE",
+     "data": {
+      "@type": "type.googleapis.com/widgets.NoteData",
+      "title": "یادداشت من",
+      "button_title": "ویرایش یادداشت",
+      "post_token": "gap5-Twe",
+      "icon_button": {
+       "icon": {
+        "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/more_vert.png",
+        "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/more_vert.png",
+        "icon_name": "MORE_VERT",
+        "icon_color": "ICON_SECONDARY"
+       },
+       "action": {
+        "type": "LOAD_MENU",
+        "payload": {
+         "@type": "type.googleapis.com/widgets.LoadMenuPayload",
+         "menu": {
+          "items": [
+           {
+            "text": "ویرایش یادداشت",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/edit.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/edit.png",
+             "icon_name": "EDIT",
+             "icon_color": "ICON_SECONDARY"
+            },
+            "action": {
+             "type": "NOTE",
+             "payload": {
+              "@type": "type.googleapis.com/widgets.NotePayload",
+              "post_token": "gap5-Twe",
+              "max_character_count": 256
+             }
+            },
+            "alignment": "RIGHT"
+           },
+           {
+            "text": "حذف یادداشت",
+            "icon": {
+             "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_primary/v1/trash_o.png",
+             "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_primary/v1/trash_o.png",
+             "icon_name": "TRASH_O",
+             "icon_color": "ICON_PRIMARY"
+            },
+            "action": {
+             "type": "MAKE_NETWORK_CALL",
+             "payload": {
+              "@type": "type.googleapis.com/widgets.MakeNetworkCallPayload",
+              "grpc_request_path": "/yaad_v2.YaadV2/DeleteNoteV2",
+              "rest_request_path": "/yaad/delete-note-v2",
+              "request_data": {
+               "@type": "type.googleapis.com/yaad_v2.DeleteNoteV2Request.RequestData",
+               "token": "gap5-Twe"
+              },
+              "needs_auth": true
+             }
+            },
+            "alignment": "RIGHT",
+            "state": "STATE_NEGATIVE"
+           }
+          ],
+          "banner": {}
+         },
+         "display_type": "LOAD_MENU_DISPLAY_TYPE_BOTTOM_SHEET"
+        }
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "STATIC",
+   "widgets": [
+    {
+     "widget_type": "SELECTOR_ROW",
+     "data": {
+      "@type": "type.googleapis.com/widgets.SelectorRowData",
+      "title": "گزارش آگهی",
+      "action": {
+       "type": "OPEN_FORM_PAGE",
+       "payload": {
+        "@type": "type.googleapis.com/widgets.OpenFormPagePayload",
+        "grpc_servicer": "/post_quality.PostQualityFeedback/GetFeedbackForm",
+        "request_data": {
+         "@type": "type.googleapis.com/post_quality.GetFeedbackFormRequest.RequestData",
+         "post_token": "gap5-Twe"
+        },
+        "rest_request_path": "/v8/post-quality/feedback-form"
+       }
+      },
+      "has_divider": true,
+      "icon": {
+       "image_url_dark": "https://s100.divarcdn.com/static/imgs/widget-icons/dark/icon_secondary/v1/report.png",
+       "image_url_light": "https://s100.divarcdn.com/static/imgs/widget-icons/light/icon_secondary/v1/report.png",
+       "icon_name": "REPORT",
+       "icon_color": "ICON_SECONDARY"
+      },
+      "last_notification_date": "0001-01-01T00:00:00Z"
+     }
+    }
+   ]
+  },
+  {
+   "section_name": "BUSINESS_SECTION",
+   "widgets": [
+    {
+     "widget_type": "LAZY_SECTION",
+     "data": {
+      "@type": "type.googleapis.com/widgets.LazySectionData",
+      "rest_request_path": "/v8/premium-user/post-page/business-data/gap5-Twe/lazy",
+      "grpc_request_path": "/premium_panel.PremiumPanel/GetPostBusinessLazyWidgets",
+      "request_data": {
+       "@type": "type.googleapis.com/premium_panel.GetPostBusinessLazyWidgetsRequest.RequestData",
+       "post_token": "gap5-Twe",
+       "hashed_post_owner_user_id": "0a8e25f03c178e8349f4cd5fe9cec49673d2f2f4ab5679fe8bd75d5b11327fae",
+       "post_business_type": "premium-panel"
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "share": {
+  "title": "۹۷ متر ۲ خواب دونبش __ دید ابدی",
+  "web_url": "https://divar.ir/v/gap5-Twe"
+ },
+ "seo": {
+  "title": "فروش ۹۷ متر ۲ خواب دونبش __ دید ابدی در تهران - ۲۱ شهریور ۱۴۰۵",
+  "description": "آگهی ۹۷ متر ۲ خواب دونبش __ دید ابدی در دیوار تهران",
+  "android_package_name": "ir.divar",
+  "android_app_url": "android-app://ir.divar/http/v/۹۷ متر ۲ خواب دونبش __ دید ابدی/gap5-Twe/",
+  "web_info": {
+   "title": "۹۷ متر ۲ خواب دونبش __ دید ابدی",
+   "district_persian": "یوسف‌آباد",
+   "city_persian": "تهران",
+   "category_slug_persian": "فروش آپارتمان"
+  },
+  "unavailable_after": "2026-09-28T15:43:16.906208",
+  "bread_crumb": [
+   {
+    "name": "فروش آپارتمان",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "apartment-sell"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "90"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "فروش مسکونی",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "residential-sell"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "90"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "املاک",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "category": {
+        "str": {
+         "value": "real-estate"
+        }
+       },
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "90"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "یوسف‌آباد",
+    "search_data": {
+     "form_data": {
+      "data": {
+       "districts": {
+        "repeated_string": {
+         "value": [
+          "90"
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   {
+    "name": "1",
+    "search_data": {
+     "form_data": {}
+    }
+   },
+   {
+    "name": "دیوار"
+   }
+  ],
+  "post_seo_schema": {
+   "@type": "Apartment",
+   "description": "بهترین واحد در منطقه رو از دست نده! \n\n⚜️ ۲ خواب، دونبش، غرق نور، با دید ابدی و بدون مشرف\n⚜️ نقشه عالی و سالن مربع شکل که هر جور بچینی قشنگه\n⚜️ خواب‌ها استاندارد و بزرگ هستن.\n⚜️ دو ساله، کلید نخورده و آماده تحویل!\n⚜️ ورودی از لابی شیک و سرایدار مقیم برای امنیت بیشتر.\n\nکارشناس فروش منطقه، REDACTED\n برای هماهنگی و بازدید، پیام بدین یا تماس بگیرین.",
+   "accommodationCategory": "فروش آپارتمان",
+   "url": "https://divar.ir/v/۹۷-متر-۲-خواب-دونبش-دید-ابدی/gap5-Twe",
+   "name": "۹۷ متر ۲ خواب دونبش // دید ابدی",
+   "image": "https://postimage01.divarcdn.com/static/photo/neda/webp_post/ctqDuy-S76vGZAxvffrTCg/43cff8b2-eb49-4012-8e90-3f565fc0ef29.webp",
+   "numberOfRooms": "دو",
+   "geo": {
+    "address": "تهران, یوسف‌آباد",
+    "latitude": "35.73463475119",
+    "longitude": "51.405345168845",
+    "@type": "GeoCoordinates"
+   },
+   "@context": "https://schema.org",
+   "web_info": {
+    "title": "۹۷ متر ۲ خواب دونبش // دید ابدی",
+    "city_persian": "تهران",
+    "district_persian": "یوسف‌آباد",
+    "category_slug_persian": "فروش آپارتمان"
+   },
+   "floorSize": {
+    "value": "97",
+    "unitCode": "MTK",
+    "@type": "QuantitativeValue"
+   }
+  },
+  "image_url": "https://postimage01.divarcdn.com/static/photo/neda/post/xutSkDxwRixlf2on5wYEKA/43cff8b2-eb49-4012-8e90-3f565fc0ef29.jpg"
+ },
+ "contact": {
+  "action_log": {
+   "server_side_info": {
+    "info": {
+     "@type": "type.googleapis.com/action_log.ContactInfoInfo",
+     "post_token": "gap5-Twe",
+     "method_name": "GetContactWeb",
+     "contact_uuid": "38e38c45-0818-43de-911f-aa5e2b711937"
+    },
+    "item_type": {
+     "type": "CONTACT_INFO"
+    }
+   },
+   "enabled": true
+  },
+  "contact_uuid": "38e38c45-0818-43de-911f-aa5e2b711937"
+ },
+ "webengage": {
+  "token": "gap5-Twe",
+  "district": "yousef-abad",
+  "brand_model": "",
+  "gender": "",
+  "category": "apartment-sell",
+  "price": 48499998720,
+  "cat_3": "apartment-sell",
+  "cat_1": "real-estate",
+  "business_type": "premium-panel",
+  "business_ref": "MXYdIQan_ciZIrYqZ",
+  "cat_2": "residential-sell",
+  "originality": "",
+  "image_count": 1,
+  "city": "tehran",
+  "status": "",
+  "rent": 0,
+  "credit": 0,
+  "source_view": ""
+ },
+ "analytics": {
+  "cat1": "real-estate",
+  "cat2": "residential-sell",
+  "cat3": "apartment-sell",
+  "city": "tehran"
+ },
+ "city": {
+  "city_id": "1",
+  "name": "تهران",
+  "parent_id": "904",
+  "second_slug": "tehran"
+ }
+}
