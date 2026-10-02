@@ -250,12 +250,15 @@ class SqliteRepository:
 
         record همان فیلدهای insert_ad (شامل sort_date تازه) است؛
         scoring_state به «pending» برمی‌گردد تا خط لولهٔ امتیازدهی دسته
-        دوباره آن را بگیرد (ADR-0001 — تصمیم ۱۹).
+        دوباره آن را بگیرد (ADR-0001 — تصمیم ۱۹) و نتیجهٔ امتیاز قبلی
+        پاک می‌شود (امتیاز تازه مال امتیازدهی بعدی است).
         """
         if not isinstance(token, str) or not token.strip():
             raise StorageError("توکن آگهی باید رشتهٔ غیرخالی باشد.")
         values = _prepare_ad_columns(record)
         values["scoring_state"] = "pending"
+        values["score"] = None
+        values["score_breakdown"] = None
         values["updated_at"] = utc_now_iso()
         assignments = ", ".join(f"{column} = ?" for column in values)
 
@@ -377,6 +380,43 @@ class SqliteRepository:
             cursor = conn.execute(
                 "UPDATE ads SET scoring_state = ?, updated_at = ? WHERE token = ?",
                 (scoring_state, utc_now_iso(), token),
+            )
+            return cursor.rowcount > 0
+
+        return await self._call(op)
+
+    async def get_pending_ads(self) -> list:
+        """آگهی‌های در انتظار امتیاز، قدیمی‌ترین اول (خط لولهٔ دسته — مرحلهٔ ۵)."""
+
+        def op(conn: sqlite3.Connection):
+            rows = conn.execute(
+                """
+                SELECT * FROM ads WHERE scoring_state = 'pending'
+                ORDER BY created_at, id
+                """
+            ).fetchall()
+            return [dict(row) for row in rows]
+
+        return await self._call(op)
+
+    async def store_score(self, token: str, score, breakdown_json=None) -> bool:
+        """ثبت نتیجهٔ امتیاز مطلق: scoring_state=scored + امتیاز و شکست آن."""
+        if isinstance(score, bool) or not isinstance(score, int):
+            raise StorageError("امتیاز آگهی باید عدد صحیح باشد.")
+        if breakdown_json is not None and not isinstance(breakdown_json, str):
+            raise StorageError("شکست امتیاز باید رشتهٔ JSON یا null باشد.")
+
+        def op(conn: sqlite3.Connection):
+            cursor = conn.execute(
+                """
+                UPDATE ads SET
+                    scoring_state = 'scored',
+                    score = ?,
+                    score_breakdown = ?,
+                    updated_at = ?
+                WHERE token = ?
+                """,
+                (score, breakdown_json, utc_now_iso(), token),
             )
             return cursor.rowcount > 0
 

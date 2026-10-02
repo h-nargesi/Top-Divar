@@ -34,6 +34,10 @@ def build_ad_record(card: AdCard, detail: PostDetail = None) -> dict:
     raw_payload = {"search_card": card.raw}
     if detail is not None:
         raw_payload["post_detail"] = detail.raw
+    if price_agreed:
+        price = None
+        # null صریح (توافقی) برای موتور امتیاز ثبت می‌شود (configuration.md بخش ۲)
+        raw_payload["price_agreed"] = True
     record = {
         "token": card.token,
         "sort_date": card.sort_date,
@@ -58,8 +62,6 @@ def build_ad_record(card: AdCard, detail: PostDetail = None) -> dict:
         "last_updated_at": detail.last_updated_at if detail else None,
         "raw_json": json.dumps(raw_payload, ensure_ascii=False),
     }
-    if price_agreed:
-        record["price"] = None
     return record
 
 

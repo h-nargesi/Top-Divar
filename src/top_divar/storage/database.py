@@ -105,6 +105,15 @@ MIGRATIONS: list = [
             "CREATE INDEX idx_matched_searches_search ON matched_searches (search_id)",
         ],
     ),
+    (
+        3,
+        [
+            # نتیجهٔ امتیاز مطلق (مرحلهٔ ۵): تا زمان امتیازدهی دسته NULL است
+            "ALTER TABLE ads ADD COLUMN score INTEGER",
+            "ALTER TABLE ads ADD COLUMN score_breakdown TEXT",
+            "CREATE INDEX idx_ads_scoring_state ON ads (scoring_state)",
+        ],
+    ),
 ]
 
 

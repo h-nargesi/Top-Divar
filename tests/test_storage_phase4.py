@@ -24,8 +24,8 @@ def _insert(repo, token, sort_date, **overrides):
     return asyncio.run(repo.insert_ad(token, sort_date, **fields))
 
 
-def test_schema_version_2(repo):
-    assert repo.schema_version == 2
+def test_schema_version_current(repo):
+    assert repo.schema_version == 3
 
 
 def test_record_search_match_is_idempotent(repo):

@@ -10,7 +10,7 @@ from top_divar.config import (
     load_yaml_file,
     validate_config,
 )
-from top_divar.core import PollScheduler, PollingSettings, poll_search
+from top_divar.core import PollScheduler, PollingSettings, poll_search, score_pending_ads
 from top_divar.divar.fetcher import DivarFetcher
 from top_divar.divar.queue import DivarRequestQueue
 from top_divar.shared.logging import get_logger, setup_logging
@@ -43,7 +43,7 @@ def _build_parser() -> argparse.ArgumentParser:
     run_parser = subparsers.add_parser(
         "run",
         parents=[common],
-        help="اجرای سرویس (مرحلهٔ ۴: پایش و تشخیص جدید)",
+        help="اجرای سرویس (مرحلهٔ ۵: پایش، تشخیص جدید و امتیاز مطلق)",
     )
     run_parser.add_argument(
         "--log-level", default="INFO", help="سطح لاگ (پیش‌فرض: INFO)"
@@ -117,8 +117,28 @@ def cmd_run(args) -> int:
     )
     fetcher = DivarFetcher(queue=queue)
 
+    async def _score_pending() -> None:
+        """مرحلهٔ دوم خط لوله: امتیازدهی دستهٔ در انتظار (مرحلهٔ ۵).
+
+        شکست این دور کشنده نیست — ردیف‌ها pending می‌مانند و دور بعدی
+        (یا آشتی‌سازی startup) دوباره می‌گیردشان.
+        """
+        try:
+            await score_pending_ads(repository, raw)
+        except Exception as exc:  # noqa: BLE001 - حلقهٔ پایش نباید بخوابد
+            log.error(
+                "امتیازدهی دسته شکست خورد؛ در دور بعد دوباره تلاش می‌شود: %s",
+                exc,
+                extra={"fields": {"event": "scoring_batch_failed"}},
+            )
+
     async def _poll(search: dict) -> None:
-        await poll_search(fetcher, repository, search, settings)
+        try:
+            await poll_search(fetcher, repository, search, settings)
+        finally:
+            # اول ذخیره با وضعیت در انتظار، بعد امتیاز دسته — حتی اگر poll
+            # وسط راه شکست خورد، ذخیره‌شده‌ها امتیاز می‌گیرند
+            await _score_pending()
 
     scheduler = PollScheduler(searches, settings, _poll)
     log.info(
@@ -142,10 +162,10 @@ def cmd_run(args) -> int:
         },
     )
     log.info(
-        "پایش دیوار فعال است (مرحلهٔ ۴ — تشخیص جدید)؛ امتیاز و ارسال هنوز ساخته نشده‌اند.",
+        "پایش دیوار فعال است (مرحلهٔ ۵ — امتیاز مطلق)؛ ارسال هنوز ساخته نشده است.",
         extra={
             "fields": {
-                "event": "phase4_detection",
+                "event": "phase5_scoring",
                 "default_interval_seconds": settings.default_interval,
                 "jitter_seconds": settings.jitter,
                 "max_consecutive_errors": settings.max_consecutive_errors,
@@ -180,7 +200,7 @@ def cmd_run(args) -> int:
 
     exit_code = 0
     try:
-        asyncio.run(_run_service(scheduler, log, _on_reload))
+        asyncio.run(_run_service(scheduler, log, _on_reload, _score_pending))
     except Exception as exc:  # noqa: BLE001 - خطای غیرمنتظره باید سرویس را بخواباند
         log.error(
             "خطای غیرمنتظره سرویس: %s",
@@ -197,7 +217,7 @@ def cmd_run(args) -> int:
     return exit_code
 
 
-async def _run_service(scheduler: PollScheduler, log, on_reload) -> None:
+async def _run_service(scheduler: PollScheduler, log, on_reload, on_startup=None) -> None:
     stop = asyncio.Event()
     loop = asyncio.get_running_loop()
 
@@ -208,6 +228,9 @@ async def _run_service(scheduler: PollScheduler, log, on_reload) -> None:
         loop.add_signal_handler(sig, _request_stop)
     if hasattr(signal, "SIGHUP"):
         loop.add_signal_handler(signal.SIGHUP, on_reload)
+    if on_startup is not None:
+        # آشتی‌سازی startup: pendingهای باقی‌مانده از اجرای قبل امتیاز می‌گیرند
+        await on_startup()
     log.info(
         "در انتظار سیگنال هستیم (SIGHUP = اعتبارسنجی دوبارهٔ کانفیگ، SIGINT/SIGTERM = توقف).",
         extra={"fields": {"event": "waiting_for_signals"}},
