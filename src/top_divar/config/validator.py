@@ -465,6 +465,8 @@ def _validate_scoring(c: _Collector, scoring):
                         "invalid_operator",
                         f"{where}: عملگر نامعتبر «{op!r}»؛ عملگرهای مجاز: ==، !=، <، <=، >، >=، in، contains_any.",
                     )
+                if "value" not in rule:
+                    c.error("schema_error", f"{where}: مقدار value لازم است.")
                 if not _is_number(rule.get("points")):
                     c.error("schema_error", f"{where}: points باید عدد باشد.")
         relative = block.get("relative")

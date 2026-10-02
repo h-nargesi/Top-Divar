@@ -182,3 +182,19 @@ def test_missing_points_is_error(cfg):
     )
     report = validate_config(cfg, base_env())
     assert "schema_error" in codes(report, "errors")
+
+
+def test_missing_value_is_error(cfg):
+    cfg["scoring"]["default"]["rules"].append(
+        {"field": "price", "op": "<=", "points": 5}
+    )
+    report = validate_config(cfg, base_env())
+    assert "schema_error" in codes(report, "errors")
+
+
+def test_explicit_null_value_is_allowed(cfg):
+    cfg["scoring"]["default"]["rules"].append(
+        {"field": "price", "op": "==", "value": None, "points": -10}
+    )
+    report = validate_config(cfg, base_env())
+    assert report.ok, [e.message for e in report.errors]
