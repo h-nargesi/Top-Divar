@@ -11,6 +11,7 @@ from top_divar.config import (
     validate_config,
 )
 from top_divar.shared.logging import get_logger, setup_logging
+from top_divar.storage import DEFAULT_DB_PATH, SqliteRepository, StorageError
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -39,7 +40,7 @@ def _build_parser() -> argparse.ArgumentParser:
     run_parser = subparsers.add_parser(
         "run",
         parents=[common],
-        help="اجرای سرویس (مرحلهٔ ۱: فقط بارگذاری و پایش کانفیگ)",
+        help="اجرای سرویس (مرحلهٔ ۲: کانفیگ + پایگاه داده)",
     )
     run_parser.add_argument(
         "--log-level", default="INFO", help="سطح لاگ (پیش‌فرض: INFO)"
@@ -92,6 +93,15 @@ def cmd_run(args) -> int:
             log.error(error.message)
         log.error("سرویس بهخاطر کانفیگ نامعتبر بالا نمی‌آید.")
         return 1
+    try:
+        repository = SqliteRepository(DEFAULT_DB_PATH)
+    except StorageError as exc:
+        log.error(
+            "بازکردن پایگاه داده ناموفق بود: %s",
+            exc,
+            extra={"fields": {"event": "storage_open_failed"}},
+        )
+        return 1
     searches = raw.get("searches", [])
     log.info(
         "سرویس راه‌اندازی شد.",
@@ -104,8 +114,18 @@ def cmd_run(args) -> int:
         },
     )
     log.info(
-        "پایش دیوار در این مرحله فعال نیست (مرحلهٔ ۱ — تنظیمات و نقطهٔ ورود).",
-        extra={"fields": {"event": "phase1_skeleton"}},
+        "پایگاه داده آماده است.",
+        extra={
+            "fields": {
+                "event": "storage_ready",
+                "path": str(DEFAULT_DB_PATH),
+                "schema_version": repository.schema_version,
+            }
+        },
+    )
+    log.info(
+        "پایش دیوار و ارسال در این مرحله فعال نیست (مرحلهٔ ۲ — ذخیره).",
+        extra={"fields": {"event": "phase2_storage"}},
     )
     stop = threading.Event()
 
@@ -144,6 +164,7 @@ def cmd_run(args) -> int:
     )
     while not stop.wait(timeout=3600):
         pass
+    repository.close()
     log.info("سیگنال توقف دریافت شد — خروج.", extra={"fields": {"event": "service_stopped"}})
     return 0
 
