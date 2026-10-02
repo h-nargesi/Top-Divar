@@ -13,6 +13,15 @@ from top_divar.config import (
 from top_divar.core import PollScheduler, PollingSettings, poll_search, score_pending_ads
 from top_divar.divar.fetcher import DivarFetcher
 from top_divar.divar.queue import DivarRequestQueue
+from top_divar.notify import (
+    DeliverySweeper,
+    EmailNotifier,
+    NotifySettings,
+    TelegramNotifier,
+    email_sender,
+    plan_delivery_rows,
+    telegram_sender,
+)
 from top_divar.shared.logging import get_logger, setup_logging
 from top_divar.storage import DEFAULT_DB_PATH, SqliteRepository, StorageError
 
@@ -43,7 +52,7 @@ def _build_parser() -> argparse.ArgumentParser:
     run_parser = subparsers.add_parser(
         "run",
         parents=[common],
-        help="اجرای سرویس (مرحلهٔ ۵: پایش، تشخیص جدید و امتیاز مطلق)",
+        help="اجرای سرویس (مرحلهٔ ۶: پایش، امتیاز مطلق و ارسال)",
     )
     run_parser.add_argument(
         "--log-level", default="INFO", help="سطح لاگ (پیش‌فرض: INFO)"
@@ -110,6 +119,9 @@ def cmd_run(args) -> int:
         for search in raw.get("searches", [])
         if isinstance(search, dict) and search.get("enabled", True)
     ]
+    searches_by_id = {
+        search["id"]: search for search in searches if isinstance(search.get("id"), str)
+    }
     settings = PollingSettings.from_config(raw)
     queue = DivarRequestQueue(
         search_min_interval=settings.search_min_interval,
@@ -117,20 +129,91 @@ def cmd_run(args) -> int:
     )
     fetcher = DivarFetcher(queue=queue)
 
+    env = load_env(args.env)
+    notify_settings = NotifySettings.from_config(raw)
+    sweeper = None
+    if notify_settings.channels:
+        senders = {}
+        if notify_settings.telegram_enabled:
+            senders["telegram"] = telegram_sender(
+                TelegramNotifier(
+                    env.get("TELEGRAM_BOT_TOKEN", ""),
+                    proxy=env.get("HTTPS_PROXY") or None,
+                )
+            )
+        if notify_settings.email_enabled:
+            smtp = notify_settings.email.smtp
+            senders["email"] = email_sender(
+                EmailNotifier(smtp, env.get(smtp.password_env))
+            )
+        sweeper = DeliverySweeper(
+            repository,
+            senders,
+            notify_settings,
+            searches_by_id=searches_by_id,
+        )
+        log.info(
+            "ارسال اطلاع‌رسانی فعال است؛ کانال‌ها: %s.",
+            "، ".join(senders),
+            extra={
+                "fields": {
+                    "event": "notify_enabled",
+                    "channels": sorted(senders),
+                    "retry_interval_seconds": notify_settings.retry_interval,
+                    "sweep_max_sends": notify_settings.sweep_max_sends,
+                }
+            },
+        )
+    else:
+        log.info(
+            "هیچ کانال اطلاع‌رسانی فعالی نیست — امتیازها فقط ذخیره می‌شوند.",
+            extra={"fields": {"event": "notify_disabled"}},
+        )
+
+    async def _plan_delivery(row: dict) -> None:
+        """ردیف‌های delivery قبل از ارسال (مرحلهٔ ۶ — ADR-0010)."""
+        try:
+            await plan_delivery_rows(repository, notify_settings, row["id"])
+        except Exception as exc:  # noqa: BLE001 - شکست برنامه‌ریزی دور بعد جبران نمی‌شود
+            log.error(
+                "ساخت ردیف تحویل برای آگهی %s شکست خورد: %s",
+                row.get("token"),
+                exc,
+                extra={
+                    "fields": {
+                        "event": "delivery_planning_failed",
+                        "token": row.get("token"),
+                    }
+                },
+            )
+
+    async def _sweep_quietly() -> None:
+        try:
+            await sweeper.sweep_once()
+        except Exception as exc:  # noqa: BLE001 - جارو نباید سرویس را بخواباند
+            log.error(
+                "دور جاروی تحویل شکست خورد: %s",
+                exc,
+                extra={"fields": {"event": "delivery_sweep_failed"}},
+            )
+
     async def _score_pending() -> None:
         """مرحلهٔ دوم خط لوله: امتیازدهی دستهٔ در انتظار (مرحلهٔ ۵).
 
         شکست این دور کشنده نیست — ردیف‌ها pending می‌مانند و دور بعدی
-        (یا آشتی‌سازی startup) دوباره می‌گیردشان.
+        (یا آشتی‌سازی startup) دوباره می‌گیردشان. بعد از امتیاز، آگهی‌های
+        ممتاز ردیف تحویل می‌گیرند و همان‌جا یک دور ارسال فوری می‌رود.
         """
         try:
-            await score_pending_ads(repository, raw)
+            await score_pending_ads(repository, raw, on_notable=_plan_delivery)
         except Exception as exc:  # noqa: BLE001 - حلقهٔ پایش نباید بخوابد
             log.error(
                 "امتیازدهی دسته شکست خورد؛ در دور بعد دوباره تلاش می‌شود: %s",
                 exc,
                 extra={"fields": {"event": "scoring_batch_failed"}},
             )
+        if sweeper is not None:
+            await _sweep_quietly()
 
     async def _poll(search: dict) -> None:
         try:
@@ -141,6 +224,15 @@ def cmd_run(args) -> int:
             await _score_pending()
 
     scheduler = PollScheduler(searches, settings, _poll)
+
+    async def _sweep_loop() -> None:
+        """جاروی دوره‌ای ردیف‌های pending (ADR-0010 — هر retry_interval)."""
+        while True:
+            await asyncio.sleep(notify_settings.retry_interval)
+            await _sweep_quietly()
+
+    background = [_sweep_loop()] if sweeper is not None else []
+
     log.info(
         "سرویس راه‌اندازی شد.",
         extra={
@@ -162,10 +254,10 @@ def cmd_run(args) -> int:
         },
     )
     log.info(
-        "پایش دیوار فعال است (مرحلهٔ ۵ — امتیاز مطلق)؛ ارسال هنوز ساخته نشده است.",
+        "پایش دیوار فعال است (مرحلهٔ ۶ — امتیاز مطلق و ارسال)؛ ثبت‌نام بات و دستورها مال مرحلهٔ ۷ است.",
         extra={
             "fields": {
-                "event": "phase5_scoring",
+                "event": "phase6_delivery",
                 "default_interval_seconds": settings.default_interval,
                 "jitter_seconds": settings.jitter,
                 "max_consecutive_errors": settings.max_consecutive_errors,
@@ -200,7 +292,11 @@ def cmd_run(args) -> int:
 
     exit_code = 0
     try:
-        asyncio.run(_run_service(scheduler, log, _on_reload, _score_pending))
+        asyncio.run(
+            _run_service(
+                scheduler, log, _on_reload, _score_pending, background=background
+            )
+        )
     except Exception as exc:  # noqa: BLE001 - خطای غیرمنتظره باید سرویس را بخواباند
         log.error(
             "خطای غیرمنتظره سرویس: %s",
@@ -217,7 +313,9 @@ def cmd_run(args) -> int:
     return exit_code
 
 
-async def _run_service(scheduler: PollScheduler, log, on_reload, on_startup=None) -> None:
+async def _run_service(
+    scheduler: PollScheduler, log, on_reload, on_startup=None, background=()
+) -> None:
     stop = asyncio.Event()
     loop = asyncio.get_running_loop()
 
@@ -228,14 +326,22 @@ async def _run_service(scheduler: PollScheduler, log, on_reload, on_startup=None
         loop.add_signal_handler(sig, _request_stop)
     if hasattr(signal, "SIGHUP"):
         loop.add_signal_handler(signal.SIGHUP, on_reload)
+    tasks = [asyncio.create_task(coro) for coro in background]
     if on_startup is not None:
         # آشتی‌سازی startup: pendingهای باقی‌مانده از اجرای قبل امتیاز می‌گیرند
+        # و ردیف‌های تحویل معلق در اولین دور جارو ارسال می‌شوند
         await on_startup()
     log.info(
         "در انتظار سیگنال هستیم (SIGHUP = اعتبارسنجی دوبارهٔ کانفیگ، SIGINT/SIGTERM = توقف).",
         extra={"fields": {"event": "waiting_for_signals"}},
     )
-    await scheduler.run(stop)
+    try:
+        await scheduler.run(stop)
+    finally:
+        for task in tasks:
+            task.cancel()
+        if tasks:
+            await asyncio.gather(*tasks, return_exceptions=True)
 
 
 def main(argv=None) -> int:

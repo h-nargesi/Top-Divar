@@ -96,7 +96,7 @@ KNOWN_POLLING_KEYS = {
     "fetch_post_detail",
 }
 
-KNOWN_NOTIFY_KEYS = {"channels", "retry_interval", "telegram", "email"}
+KNOWN_NOTIFY_KEYS = {"channels", "retry_interval", "sweep_max_sends", "telegram", "email"}
 KNOWN_TELEGRAM_KEYS = {"backfill_days"}
 KNOWN_EMAIL_KEYS = {"smtp", "to"}
 KNOWN_SMTP_KEYS = {"host", "port", "encryption", "username", "password_env", "from"}
@@ -107,6 +107,8 @@ KNOWN_SMTP_ENCRYPTIONS = {"starttls", "tls", "none"}
 
 SYSTEM_WINDOW_DAYS_MAX = 30
 DEFAULT_BACKFILL_DAYS = 7
+DEFAULT_RETRY_INTERVAL = "30m"
+DEFAULT_SWEEP_MAX_SENDS = 50
 DEFAULT_MIN_INTERVAL = "5m"
 DEFAULT_DEFAULT_INTERVAL = "5m"
 DEFAULT_SEARCH_MIN_INTERVAL = "30s"
@@ -593,6 +595,12 @@ def _validate_notify(c: _Collector, notify, env, window_days_max):
             parse_duration(notify["retry_interval"], what="notify.retry_interval")
         except DurationError as exc:
             c.error("invalid_duration", str(exc))
+    sweep_max = notify.get("sweep_max_sends")
+    if sweep_max is not None and (not _is_int(sweep_max) or sweep_max < 1):
+        c.error(
+            "schema_error",
+            "notify.sweep_max_sends باید عدد صحیح مثبت باشد (سقف ارسال هر سویپ).",
+        )
     channels = notify.get("channels", [])
     if channels is None:
         channels = []

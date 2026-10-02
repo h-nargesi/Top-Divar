@@ -124,6 +124,11 @@ def is_jalali_leap(jy: int) -> bool:
     return _jal_cal(jy)[0] == 0
 
 
+def jalali_month_name(month: int) -> str:
+    """نام ماه شمسی (۱ = فروردین)."""
+    return _MONTH_NAMES[month - 1]
+
+
 def jalali_year_of(moment: datetime.datetime) -> int:
     """سال شمسی یک تاریخ میلادی (مرز سال = ۱ فروردین)."""
     return gregorian_to_jalali(moment.year, moment.month, moment.day)[0]

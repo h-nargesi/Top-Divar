@@ -44,8 +44,13 @@ def resolve_block_name(search_ids, searches_by_id: dict) -> str:
     return DEFAULT_BLOCK_NAME
 
 
-async def score_pending_ads(repository, raw_config) -> ScoringBatchOutcome:
-    """امتیازدهی همهٔ آگهی‌های pending با بلوک امتیاز جستجوی خودشان."""
+async def score_pending_ads(repository, raw_config, *, on_notable=None) -> ScoringBatchOutcome:
+    """امتیازدهی همهٔ آگهی‌های pending با بلوک امتیاز جستجوی خودشان.
+
+    on_notable (اختیاری — مرحلهٔ ۶): بعد از ثبت امتیاز هر آگهی ممتاز
+    صدا زده می‌شود؛ ساخت ردیف‌های delivery قبل از ارسال مال همان
+    فراخوان است (ADR-0010 — تراکنش ذخیره + ردیف‌ها قبل از ارسال).
+    """
     scoring = raw_config.get("scoring") if isinstance(raw_config, dict) else None
     blocks = load_scoring_blocks(scoring)
     searches_by_id = {}
@@ -85,6 +90,8 @@ async def score_pending_ads(repository, raw_config) -> ScoringBatchOutcome:
         if result.notable:
             outcome.notable += 1
             outcome.tokens_notable.append(row["token"])
+            if on_notable is not None:
+                await on_notable(row)
             _log.info(
                 "آگهی ممتاز: %s با امتیاز %s (حد %s).",
                 row["token"],

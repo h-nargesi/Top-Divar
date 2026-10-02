@@ -58,8 +58,12 @@ polling:
 
 notify:
   channels: []
-  # بعد از ساخت فاز ارسال (مرحلهٔ ۶) کانال‌ها فعال می‌شوند؛ مثال:
+  # ارسال (مرحلهٔ ۶) آماده است؛ برای فعال‌سازی، کانال‌ها را روشن کنید و
+  # متغیرهای لازم را در .env بگذارید (TELEGRAM_BOT_TOKEN، SMTP_PASSWORD).
+  # مثال:
   # channels: [telegram, email]
+  # retry_interval: 30m            # بازهٔ جاروی ردیف‌های pending
+  # sweep_max_sends: 50            # سقف ارسال هر سویپ به‌ازای هر کانال
   # telegram:
   #   backfill_days: 7
   # email:

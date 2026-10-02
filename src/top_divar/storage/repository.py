@@ -516,6 +516,90 @@ class SqliteRepository:
 
         return await self._call(op)
 
+    async def list_users(self) -> list:
+        def op(conn: sqlite3.Connection):
+            rows = conn.execute(
+                "SELECT * FROM users ORDER BY id"
+            ).fetchall()
+            return [dict(row) for row in rows]
+
+        return await self._call(op)
+
+    async def get_due_deliveries(
+        self, *, channel: str = None, now=None, limit: int = None
+    ) -> list:
+        """ردیف‌های pendingِ سررسیده، قدیمی‌ترین اول (مرحلهٔ ۶ — ADR-0010).
+
+        next_attempt_atِ آینده یعنی backoff ردیف‌محور؛ فقط بعد از سررسید
+        برمی‌گردد. هر ردیف به‌همراه فیلدهای پیام آگهی خودش است.
+        """
+        now_iso = canonical_utc(utc_now() if now is None else now)
+        sql = """
+            SELECT
+                d.id AS delivery_id, d.ad_id, d.channel, d.recipient,
+                d.status, d.attempts, d.last_error, d.next_attempt_at,
+                d.created_at AS delivery_created_at,
+                a.id AS ad_row_id, a.token, a.title, a.price,
+                a.price_per_square, a.size, a.rooms, a.construction_year,
+                a.building_age, a.floor, a.total_floors, a.has_parking,
+                a.has_elevator, a.has_warehouse, a.district, a.city,
+                a.published_at, a.raw_json, a.score, a.score_breakdown
+            FROM delivery d JOIN ads a ON a.id = d.ad_id
+            WHERE d.status = 'pending'
+              AND (d.next_attempt_at IS NULL OR d.next_attempt_at <= ?)
+        """
+        params = [now_iso]
+        if channel is not None:
+            sql += " AND d.channel = ?"
+            params.append(channel)
+        sql += " ORDER BY d.created_at, d.id"
+        if limit is not None:
+            sql += " LIMIT ?"
+            params.append(int(limit))
+
+        def op(conn: sqlite3.Connection):
+            rows = conn.execute(sql, params).fetchall()
+            packed = []
+            for row in rows:
+                item = dict(row)
+                ad = {
+                    "id": item.pop("ad_row_id"),
+                    "token": item.pop("token"),
+                    "title": item.pop("title"),
+                    "price": item.pop("price"),
+                    "price_per_square": item.pop("price_per_square"),
+                    "size": item.pop("size"),
+                    "rooms": item.pop("rooms"),
+                    "construction_year": item.pop("construction_year"),
+                    "building_age": item.pop("building_age"),
+                    "floor": item.pop("floor"),
+                    "total_floors": item.pop("total_floors"),
+                    "has_parking": item.pop("has_parking"),
+                    "has_elevator": item.pop("has_elevator"),
+                    "has_warehouse": item.pop("has_warehouse"),
+                    "district": item.pop("district"),
+                    "city": item.pop("city"),
+                    "published_at": item.pop("published_at"),
+                    "raw_json": item.pop("raw_json"),
+                    "score": item.pop("score"),
+                    "score_breakdown": item.pop("score_breakdown"),
+                }
+                delivery = {
+                    "id": item.pop("delivery_id"),
+                    "ad_id": item.pop("ad_id"),
+                    "channel": item.pop("channel"),
+                    "recipient": item.pop("recipient"),
+                    "status": item.pop("status"),
+                    "attempts": item.pop("attempts"),
+                    "last_error": item.pop("last_error"),
+                    "next_attempt_at": item.pop("next_attempt_at"),
+                    "created_at": item.pop("delivery_created_at"),
+                }
+                packed.append({"delivery": delivery, "ad": ad})
+            return packed
+
+        return await self._call(op)
+
     async def create_delivery_rows(self, ad_id: int, recipients) -> int:
         rows = []
         for pair in recipients:
