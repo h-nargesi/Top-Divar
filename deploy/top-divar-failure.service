@@ -1,0 +1,9 @@
+# یونیت پیام شکست — از OnFailure= یونیت اصلی صدا زده می‌شود (ADR-0003)
+
+[Unit]
+Description=Top Divar — پیام شکست به اپراتور
+
+[Service]
+Type=oneshot
+EnvironmentFile=/opt/top-divar/.env
+ExecStart=/opt/top-divar/deploy/on-failure.sh %n

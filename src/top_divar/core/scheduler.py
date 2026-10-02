@@ -55,12 +55,23 @@ def _uniform(low: float, high: float) -> float:
 class PollScheduler:
     """اجرای poll جستجوها روی سر رسید، با jitter و توقف موقت روی خطای متوالی."""
 
-    def __init__(self, searches, settings: PollingSettings, poll, *, clock=None, sleeper=None, rng=None):
+    def __init__(
+        self,
+        searches,
+        settings: PollingSettings,
+        poll,
+        *,
+        clock=None,
+        sleeper=None,
+        rng=None,
+        on_paused=None,
+    ):
         self._settings = settings
         self._poll = poll
         self._clock = clock or time.monotonic
         self._sleeper = sleeper or asyncio.sleep
         self._rng = rng or _uniform
+        self._on_paused = on_paused
         now = self._clock()
         self._schedules = []
         for search in searches:
@@ -74,6 +85,41 @@ class PollScheduler:
     @property
     def schedules(self) -> list:
         return list(self._schedules)
+
+    @property
+    def search_ids(self) -> list:
+        return [schedule.search_id for schedule in self._schedules]
+
+    def refresh(self, searches, settings: PollingSettings) -> dict:
+        """به‌روزرسانی زندهٔ جستجوها بعد از SIGHUP (مرحلهٔ ۷ — ADR-0011).
+
+        جستجوی غایب/غیرفعال از نوبت می‌افتد؛ برگشتِ همان search_id از
+        watermark و خطاهای متوالی قبلی‌اش ادامه می‌دهد (تاریخچه مستقل
+        از کانفیگ است). خروجی: {"added": [...], "removed": [...]}.
+        """
+        previous = {schedule.search_id: schedule for schedule in self._schedules}
+        now = self._clock()
+        self._settings = settings
+        self._schedules = []
+        changed = {"added": [], "removed": []}
+        for search in searches:
+            if not isinstance(search, dict) or not search.get("enabled", True):
+                continue
+            search_id = search.get("id")
+            schedule = previous.pop(search_id, None)
+            if schedule is None:
+                changed["added"].append(search_id)
+                schedule = _SearchSchedule(
+                    search=search,
+                    interval=resolve_search_interval(search, settings),
+                    next_due=now,
+                )
+            else:
+                schedule.search = search
+                schedule.interval = resolve_search_interval(search, settings)
+            self._schedules.append(schedule)
+        changed["removed"] = list(previous)
+        return changed
 
     def _jittered_delay(self, schedule: _SearchSchedule) -> float:
         offset = self._rng(-self._settings.jitter, self._settings.jitter)
@@ -105,10 +151,26 @@ class PollScheduler:
                 delay = self._error_delay(schedule, exc)
                 schedule.next_due = self._clock() + delay
                 self._log_poll_failure(schedule, exc, delay)
+                if (
+                    self._on_paused is not None
+                    and schedule.consecutive_errors >= self._settings.max_consecutive_errors
+                ):
+                    await self._notify_paused(schedule, exc)
             else:
                 schedule.consecutive_errors = 0
                 schedule.next_due = self._clock() + self._jittered_delay(schedule)
         return polled
+
+    async def _notify_paused(self, schedule: _SearchSchedule, exc: Exception) -> None:
+        """هشدار اپراتور بعد از خطای متوالی دیوار (ADR-0003) — throttle سمت فراخوان."""
+        try:
+            await self._on_paused(schedule, exc)
+        except Exception:  # noqa: BLE001 - هشدار نباید حلقهٔ پایش را بخواباند
+            _log.error(
+                "ارسال هشدار توقف پایش جستجوی «%s» شکست خورد.",
+                schedule.search_id,
+                extra={"fields": {"event": "ops_alert_failed", "search_id": schedule.search_id}},
+            )
 
     def _log_poll_failure(self, schedule: _SearchSchedule, exc: Exception, delay: float) -> None:
         fields = {

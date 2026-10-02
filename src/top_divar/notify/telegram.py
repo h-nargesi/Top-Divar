@@ -1,4 +1,4 @@
-"""آداپتور TelegramNotifier (مرحلهٔ ۶) — ADR-0002.
+"""آداپتور TelegramNotifier — ADR-0002.
 
 - ارسال با Bot API مستقیم: POST api.telegram.org/bot<TOKEN>/sendMessage
   با chat_id، text، parse_mode=HTML و disable_web_page_preview: true
@@ -8,7 +8,8 @@
   تکرار → خطای قابل‌احیا با سرنخ next_attempt (ADR-0010)
 - 403/400 ابدی؛ 5xx و خطای شبکه گذرا؛ ناشناخته گذرا (محافظه‌کارانه)
 
-ثبت‌نام بات و دستورها مال مرحلهٔ ۷ است.
+درگاه بات (getUpdates و پاسخ دستورها) مال بستهٔ `top_divar.bot` است و
+از همان UrllibTransport این ماژول استفاده می‌کند.
 """
 
 import asyncio
@@ -27,7 +28,7 @@ DEFAULT_TIMEOUT_SECONDS = 20.0
 RETRY_AFTER_CAP_SECONDS = 60.0
 
 
-class _UrllibTransport:
+class UrllibTransport:
     """حمل HTTP با urllib؛ پروکسی صریح روی همهٔ فراخوانی‌ها (ADR-0002)."""
 
     def __init__(self, *, proxy=None, timeout: float = DEFAULT_TIMEOUT_SECONDS):
@@ -99,7 +100,7 @@ class TelegramNotifier:
         if not isinstance(bot_token, str) or not bot_token.strip():
             raise ValueError("توکن ربات تلگرام باید رشتهٔ غیرخالی باشد.")
         self._url = f"{TELEGRAM_API_BASE}/bot{bot_token.strip()}/sendMessage"
-        self._transport = transport or _UrllibTransport(
+        self._transport = transport or UrllibTransport(
             proxy=proxy, timeout=timeout
         )
         self._sleeper = sleeper or asyncio.sleep
@@ -122,7 +123,7 @@ class TelegramNotifier:
             result = data.get("result")
             return int(result.get("message_id")) if isinstance(result, dict) else None
 
-        error_code, description, retry_after = _error_fields(status, data)
+        error_code, description, retry_after = extract_error_fields(status, data)
         if error_code == 429:
             wait = min(float(retry_after or 0) or RETRY_AFTER_CAP_SECONDS, RETRY_AFTER_CAP_SECONDS)
             _log.warning(
@@ -144,7 +145,7 @@ class TelegramNotifier:
             if status == 200 and isinstance(data, dict) and data.get("ok"):
                 result = data.get("result")
                 return int(result.get("message_id")) if isinstance(result, dict) else None
-            error_code, description, retry_after = _error_fields(status, data)
+            error_code, description, retry_after = extract_error_fields(status, data)
 
         category = classify_telegram_status(error_code)
         raise SendError(
@@ -156,7 +157,7 @@ class TelegramNotifier:
         )
 
 
-def _error_fields(status, data):
+def extract_error_fields(status, data):
     """استخراج (error_code, description, retry_after) از پاسخ خطای تلگرام."""
     error_code = status
     description = None

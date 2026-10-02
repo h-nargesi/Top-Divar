@@ -1,0 +1,31 @@
+# یونیت سرویس اصلی Top Divar — ADR-0003 (systemd روی VPS داخل ایران)
+# نصب: cp deploy/top-divar.service /etc/systemd/system/ (مسیرها را ببینید:
+# پیش‌فرض نصب در /opt/top-divar با venv در /opt/top-divar/.venv)
+# تلگرام از طریق HTTPS_PROXY روی همهٔ فراخوانی‌های بات (ADR-0002) — از .env
+
+[Unit]
+Description=Top Divar — پایش آگهی‌های دیوار
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+WorkingDirectory=/opt/top-divar
+EnvironmentFile=/opt/top-divar/.env
+ExecStart=/opt/top-divar/.venv/bin/top-divar run
+# بارگذاری مجدد کانفیگ بدون ری‌استارت (ADR-0011): SIGHUP
+ExecReload=/bin/kill -HUP $MAINPID
+# نگهبان: برنامه هر نصف این بازه sd_notify(WATCHDOG=1) می‌فرستد؛
+# قفل‌شدن حلقهٔ اصلی → ری‌استارت خودکار (ADR-0003/0012)
+WatchdogSec=300
+Restart=always
+RestartSec=10
+# پیام شکست به اپراتور (ADR-0003) — curl از همان HTTPS_PROXY
+OnFailure=top-divar-failure.service
+# سخت‌گیری ملایم بدون شکستن SQLite در data/
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/opt/top-divar/data
+
+[Install]
+WantedBy=multi-user.target

@@ -27,7 +27,11 @@
 pip install -r requirements-dev.txt   # وابستگی‌های اجرا + تست (PyYAML، python-dotenv، pytest)
 python3 -m pytest                     # تست‌ها (pytest.ini داخل pyproject.toml است)
 PYTHONPATH=src python3 -m top_divar validate   # اعتبارسنجی config.yaml و .env
-PYTHONPATH=src python3 -m top_divar run        # اجرای سرویس (فعلاً اسکلت مرحلهٔ ۱)
+PYTHONPATH=src python3 -m top_divar run        # اجرای سرویس (زمان‌بند، بات، جارو، نگهبان)
+PYTHONPATH=src python3 -m top_divar user list  # فهرست کاربران بات + تعداد pending
+PYTHONPATH=src python3 -m top_divar user remove <username>   # حذف کاربر + dead کردن pendingهای او
+PYTHONPATH=src python3 -m top_divar reset-watermark <search_id>   # baseline عمدی یک جستجو
+PYTHONPATH=src python3 -m top_divar backup     # پشتیبان VACUUM INTO با چرخش ~۷ نسخه
 ```
 
 نکته: اگر بسته با `pip install .` نصب شود، دستور کنسولی `top-divar` هم در دسترس است و `PYTHONPATH` لازم نیست.

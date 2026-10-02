@@ -134,6 +134,68 @@ def jalali_year_of(moment: datetime.datetime) -> int:
     return gregorian_to_jalali(moment.year, moment.month, moment.day)[0]
 
 
+_PERSIAN_AND_ARABIC_DIGITS = str.maketrans(
+    "۰۱۲۳۴۵۶۷۸۹" "٠١٢٣٤٥٦٧٨٩",
+    "0123456789" "0123456789",
+)
+
+_DATE_SEPARATORS = (" ", "-", ".", "/")
+
+
+def jalali_days_in_month(jy: int, jm: int) -> int:
+    """تعداد روزهای ماه شمسی (اسفند کبیسه ۳۰ روز)."""
+    if 1 <= jm <= 6:
+        return 31
+    if 7 <= jm <= 11:
+        return 30
+    return 30 if is_jalali_leap(jy) else 29
+
+
+def parse_jalali_date(text) -> tuple:
+    """«YYYY/MM/DD» شمسی (ارقام فارسی/عربی هم پذیرفته) → (jy, jm, jd).
+
+    جداکنندهٔ / یا - یا . ؛ نامعتبر → None. دامنهٔ سال: ۱۳۰۰ تا ۱۵۰۰.
+    """
+    if not isinstance(text, str):
+        return None
+    normalized = text.strip().translate(_PERSIAN_AND_ARABIC_DIGITS)
+    for separator in _DATE_SEPARATORS:
+        if separator in normalized:
+            parts = normalized.split(separator)
+            break
+    else:
+        return None
+    if len(parts) != 3 or not all(part.isdigit() for part in parts):
+        return None
+    year, month, day = (int(part) for part in parts)
+    if not 1300 <= year <= 1500:
+        return None
+    if not 1 <= month <= 12:
+        return None
+    if not 1 <= day <= jalali_days_in_month(year, month):
+        return None
+    return year, month, day
+
+
+def jalali_today(clock=None) -> tuple:
+    """تاریخ شمسی «امروز» به وقت تهران."""
+    import datetime
+
+    moment = datetime.datetime.now(
+        datetime.timezone(TEHRAN_UTC_OFFSET)
+    ) if clock is None else clock().astimezone(
+        datetime.timezone(TEHRAN_UTC_OFFSET)
+    )
+    return gregorian_to_jalali(moment.year, moment.month, moment.day)
+
+
+def jalali_start_of_day_utc(jy: int, jm: int, jd: int) -> datetime.datetime:
+    """نیمه‌شب تهرانِ آن روز شمسی → datetime آگاه UTC."""
+    gy, gm, gd = jalali_to_gregorian(jy, jm, jd)
+    local = datetime.datetime(gy, gm, gd, tzinfo=datetime.timezone(TEHRAN_UTC_OFFSET))
+    return local.astimezone(datetime.timezone.utc)
+
+
 def jalali_datetime_to_utc(jy: int, jm: int, jd: int, hour: int, minute: int) -> datetime.datetime:
     """تاریخ شمسی به وقت تهران → datetime آگاه UTC."""
     gy, gm, gd = jalali_to_gregorian(jy, jm, jd)

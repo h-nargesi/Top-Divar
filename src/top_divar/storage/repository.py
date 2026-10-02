@@ -456,6 +456,17 @@ class SqliteRepository:
 
         return await self._call(op)
 
+    async def list_watermarks(self) -> list:
+        """همهٔ خط‌های مرز — برای لاگ watermarkهای بی‌صاحب (ADR-0011)."""
+
+        def op(conn: sqlite3.Connection):
+            rows = conn.execute(
+                "SELECT search_id, sort_date FROM watermarks ORDER BY search_id"
+            ).fetchall()
+            return [dict(row) for row in rows]
+
+        return await self._call(op)
+
     async def get_tombstone(self, token: str):
         def op(conn: sqlite3.Connection):
             row = conn.execute(
@@ -528,12 +539,49 @@ class SqliteRepository:
     async def get_due_deliveries(
         self, *, channel: str = None, now=None, limit: int = None
     ) -> list:
-        """ردیف‌های pendingِ سررسیده، قدیمی‌ترین اول (مرحلهٔ ۶ — ADR-0010).
+        """ردیف‌های pendingِ سررسیدشده، قدیمی‌ترین اول (مرحلهٔ ۶ — ADR-0010).
 
         next_attempt_atِ آینده یعنی backoff ردیف‌محور؛ فقط بعد از سررسید
         برمی‌گردد. هر ردیف به‌همراه فیلدهای پیام آگهی خودش است.
         """
         now_iso = canonical_utc(utc_now() if now is None else now)
+        extra_where = " AND (d.next_attempt_at IS NULL OR d.next_attempt_at <= ?)"
+        params = [now_iso]
+        if channel is not None:
+            extra_where += " AND d.channel = ?"
+            params.append(channel)
+        return await self._query_delivery_rows(extra_where, params, limit)
+
+    async def get_pending_deliveries(
+        self,
+        *,
+        channel: str = None,
+        recipient: str = None,
+        since=None,
+        limit: int = None,
+    ) -> list:
+        """pendingهای یک گیرنده بدون تاثیر backoff ردیف‌محور (G5 — مرحلهٔ ۷).
+
+        جبران تعاملی بات: تعامل کاربر یعنی ارسال فوری، بی‌تاب به
+        next_attempt_at؛ ردیف‌های dead برنمی‌گردند (فقط pending).
+        since (اختیاری) سقف پنجرهٔ جبران روی created_at است.
+        """
+        extra_where = ""
+        params = []
+        if channel is not None:
+            extra_where += " AND d.channel = ?"
+            params.append(channel)
+        if recipient is not None:
+            extra_where += " AND d.recipient = ?"
+            params.append(recipient)
+        if since is not None:
+            extra_where += " AND d.created_at >= ?"
+            params.append(canonical_utc(since, what="since"))
+        return await self._query_delivery_rows(extra_where, params, limit)
+
+    async def _query_delivery_rows(
+        self, extra_where: str, params: list, limit: int = None
+    ) -> list:
         sql = """
             SELECT
                 d.id AS delivery_id, d.ad_id, d.channel, d.recipient,
@@ -546,16 +594,10 @@ class SqliteRepository:
                 a.published_at, a.raw_json, a.score, a.score_breakdown
             FROM delivery d JOIN ads a ON a.id = d.ad_id
             WHERE d.status = 'pending'
-              AND (d.next_attempt_at IS NULL OR d.next_attempt_at <= ?)
-        """
-        params = [now_iso]
-        if channel is not None:
-            sql += " AND d.channel = ?"
-            params.append(channel)
-        sql += " ORDER BY d.created_at, d.id"
+        """ + extra_where + " ORDER BY d.created_at, d.id"
         if limit is not None:
             sql += " LIMIT ?"
-            params.append(int(limit))
+            params = [*params, int(limit)]
 
         def op(conn: sqlite3.Connection):
             rows = conn.execute(sql, params).fetchall()
@@ -597,6 +639,121 @@ class SqliteRepository:
                 }
                 packed.append({"delivery": delivery, "ad": ad})
             return packed
+
+        return await self._call(op)
+
+    async def count_pending_deliveries(
+        self, *, channel: str = None, recipient: str = None
+    ) -> int:
+        """تعداد pendingهای یک گیرنده — پیام /status بات (بخش ۳.۱)."""
+        sql = "SELECT COUNT(*) FROM delivery WHERE status = 'pending'"
+        params = []
+        if channel is not None:
+            sql += " AND channel = ?"
+            params.append(channel)
+        if recipient is not None:
+            sql += " AND recipient = ?"
+            params.append(recipient)
+
+        def op(conn: sqlite3.Connection):
+            return int(conn.execute(sql, params).fetchone()[0])
+
+        return await self._call(op)
+
+    async def list_users_with_pending(self) -> list:
+        """فهرست کاربران با تعداد pending هر کدام — دستور `user list` (ADR-0011)."""
+
+        def op(conn: sqlite3.Connection):
+            rows = conn.execute(
+                """
+                SELECT u.id, u.username, u.chat_id, u.created_at,
+                       (
+                           SELECT COUNT(*) FROM delivery d
+                           WHERE d.channel = 'telegram'
+                             AND d.recipient = CAST(u.chat_id AS TEXT)
+                             AND d.status = 'pending'
+                       ) AS pending
+                FROM users u ORDER BY u.id
+                """
+            ).fetchall()
+            return [dict(row) for row in rows]
+
+        return await self._call(op)
+
+    async def delete_user(self, username: str) -> dict:
+        """حذف کاربر + dead کردن pendingهای او (G3 — ADR-0010/0011).
+
+        ردیف‌های sent دست‌نخورده می‌مانند (تاریخچه). خروجی: ردیف حذف‌شده
+        و تعداد pendingهایی که dead شدند؛ None یعنی کاربری نبود.
+        """
+        if not isinstance(username, str) or not username.strip():
+            raise StorageError("نام کاربری باید رشتهٔ غیرخالی باشد.")
+
+        def op(conn: sqlite3.Connection):
+            row = conn.execute(
+                "SELECT * FROM users WHERE username = ?", (username,)
+            ).fetchone()
+            if row is None:
+                return None
+            user = dict(row)
+            dead = conn.execute(
+                """
+                UPDATE delivery SET status = 'dead', updated_at = ?
+                WHERE recipient = ? AND channel = 'telegram' AND status = 'pending'
+                """,
+                (utc_now_iso(), str(user["chat_id"])),
+            )
+            conn.execute("DELETE FROM users WHERE id = ?", (user["id"],))
+            user["pending_dead"] = dead.rowcount
+            return user
+
+        return await self._call(op)
+
+    async def get_notable_ads_since(self, since, *, limit: int = None) -> list:
+        """آگهی‌های ممتاز از یک تاریخ، قدیمی‌ترین اول — /resend (ADR-0010).
+
+        «ممتاز» = وجود ردیف delivery برای آگهی (تصمیم ۱۳)؛ وضعیت ردیفها
+        (حتی dead) مهم نیست. سنجهٔ تاریخ sort_date است — همان سنجهٔ purge.
+        """
+        since_iso = canonical_utc(since, what="since")
+        sql = """
+            SELECT a.* FROM ads a
+            WHERE a.sort_date >= ?
+              AND EXISTS (SELECT 1 FROM delivery d WHERE d.ad_id = a.id)
+            ORDER BY a.sort_date, a.id
+        """
+        params = [since_iso]
+        if limit is not None:
+            sql += " LIMIT ?"
+            params.append(int(limit))
+
+        def op(conn: sqlite3.Connection):
+            rows = conn.execute(sql, params).fetchall()
+            return [dict(row) for row in rows]
+
+        return await self._call(op)
+
+    async def vacuum_into(self, dest_path) -> None:
+        """تصویر سازگار پایگاه با VACUUM INTO (ADR-0001 — پشتیبان روزانه)."""
+        target = str(dest_path)
+        if not target.strip():
+            raise StorageError("مسیر فایل پشتیبان باید رشتهٔ غیرخالی باشد.")
+
+        def op(conn: sqlite3.Connection):
+            conn.execute("VACUUM INTO ?", (target,))
+
+        return await self._call(op)
+
+    async def delete_watermark(self, search_id: str) -> bool:
+        """حذف خط مرز یک جستجو برای baseline عمدی — reset-watermark (ADR-0011)."""
+        if not isinstance(search_id, str) or not search_id.strip():
+            raise StorageError("شناسهٔ جستجو باید رشتهٔ غیرخالی باشد.")
+
+        def op(conn: sqlite3.Connection):
+            cursor = conn.execute(
+                "DELETE FROM watermarks WHERE search_id = ?", (search_id,)
+            )
+            return cursor.rowcount > 0
 
         return await self._call(op)
 

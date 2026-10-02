@@ -20,6 +20,7 @@ from top_divar.notify.message import (
     build_email_subject,
     build_telegram_message,
 )
+from top_divar.notify.planner import resolve_search_label
 from top_divar.notify.settings import NotifySettings
 from top_divar.shared.logging import get_logger
 from top_divar.storage.timestamps import utc_now
@@ -133,21 +134,66 @@ class DeliverySweeper:
                 )
         return outcome
 
+    async def backfill_recipient(
+        self, channel: str, recipient: str, *, since=None
+    ) -> ChannelSweepResult:
+        """جبران تعاملی: pendingهای یک گیرنده، فوری و قدیمی‌ترین اول (G5).
+
+        بی‌تاب به next_attempt_at (تعامل کاربر = ارسال فوری)؛ ردیف‌های
+        dead برنمی‌گردند. همان قفل جارو را می‌گیرد تا با سویپ تداخل نکند.
+        """
+        result = ChannelSweepResult(channel=channel)
+        if channel not in self._senders:
+            return result
+        if self._lock.locked():
+            return result
+        async with self._lock:
+            rows = await self._repository.get_pending_deliveries(
+                channel=channel, recipient=recipient, since=since
+            )
+            return await self._deliver_rows(channel, rows)
+
+    def apply_config(
+        self,
+        settings: NotifySettings,
+        searches_by_id: dict,
+        *,
+        senders: dict = None,
+    ) -> None:
+        """به‌روزرسانی زندهٔ تنظیمات بعد از SIGHUP (مرحلهٔ ۷ — ADR-0011)."""
+        self._settings = settings
+        self._searches_by_id = dict(searches_by_id or {})
+        if senders is not None:
+            self._senders = dict(senders)
+
     async def _sweep_channel(self, channel: str) -> ChannelSweepResult:
         send = self._senders[channel]
         result = ChannelSweepResult(channel=channel)
         rows = await self._repository.get_due_deliveries(
             channel=channel, limit=self._settings.sweep_max_sends
         )
+        return await self._deliver_rows(channel, rows, result=result)
+
+    async def _deliver_rows(
+        self,
+        channel: str,
+        rows: list,
+        *,
+        result: ChannelSweepResult = None,
+    ) -> ChannelSweepResult:
+        """ارسال ردیف‌های تحویل با علامت‌گذاری و فاصلهٔ مجاز کانال."""
+        result = result or ChannelSweepResult(channel=channel)
         labels = {}
         for index, row in enumerate(rows):
             delivery, ad = row["delivery"], row["ad"]
             result.attempted += 1
             if ad["id"] not in labels:
-                labels[ad["id"]] = await self._search_label(ad["id"])
+                labels[ad["id"]] = await resolve_search_label(
+                    self._repository, self._searches_by_id, ad["id"]
+                )
             label = labels[ad["id"]]
             try:
-                await send(ad, delivery["recipient"], label)
+                await self._senders[channel](ad, delivery["recipient"], label)
             except SendError as exc:
                 await self._mark_failure(delivery, exc, result)
             else:
@@ -236,17 +282,3 @@ class DeliverySweeper:
                 }
             },
         )
-
-    async def _search_label(self, ad_id: int) -> str:
-        """برچسب اولین جستجوی مچ‌شده؛ غایب → id، بدون آن → نام پیش‌فرض."""
-        search_ids = await self._repository.get_matched_searches(ad_id)
-        for search_id in search_ids:
-            search = self._searches_by_id.get(search_id)
-            if isinstance(search, dict):
-                label = search.get("label")
-                if isinstance(label, str) and label.strip():
-                    return label
-                return search_id
-        if search_ids:
-            return search_ids[0]
-        return "divar"

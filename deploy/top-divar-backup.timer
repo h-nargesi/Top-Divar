@@ -1,0 +1,11 @@
+# تایمر پشتیبان روزانه — هر روز یک اسنپ‌شات سازگار (ADR-0001)
+
+[Unit]
+Description=Top Divar — زمان‌بند پشتیبان روزانه
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

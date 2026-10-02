@@ -40,6 +40,24 @@ async def resolve_recipients(repository, settings: NotifySettings) -> dict:
     return recipients
 
 
+async def resolve_search_label(repository, searches_by_id: dict, ad_id: int) -> str:
+    """برچسب اولین جستجوی مچ‌شده؛ غایب → id، بدون آن → نام پیش‌فرض.
+
+    برچسب آگهی مشترک بین چند جستجو = اولین جستجوی مچ‌شده (ADR-0007).
+    """
+    search_ids = await repository.get_matched_searches(ad_id)
+    for search_id in search_ids:
+        search = searches_by_id.get(search_id)
+        if isinstance(search, dict):
+            label = search.get("label")
+            if isinstance(label, str) and label.strip():
+                return label
+            return search_id
+    if search_ids:
+        return search_ids[0]
+    return "divar"
+
+
 async def plan_delivery_rows(
     repository, settings: NotifySettings, ad_id: int
 ) -> PlanResult:

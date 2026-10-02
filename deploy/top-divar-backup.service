@@ -1,0 +1,10 @@
+# پشتیبان روزانهٔ پایگاه با VACUUM INTO — تصویر سازگار بدون توقف سرویس (ADR-0001)
+# خروجی در data/backups/ با چرخش ~۷ نسخهٔ روزانه
+
+[Unit]
+Description=Top Divar — پشتیبان روزانهٔ پایگاه داده
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/top-divar
+ExecStart=/opt/top-divar/.venv/bin/top-divar backup
